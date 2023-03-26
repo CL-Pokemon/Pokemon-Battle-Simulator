@@ -1,13 +1,20 @@
 window.addEventListener('DOMContentLoaded', () => {
 
-    const listCards = document.querySelector('#list-cards');
-    const pokeSprite = document.querySelector("#pokeSprite")
+
     // const sprite = document.querySelector('#poke-sprite');
     // const numPoke = document.querySelector('#idPoke');
-    // const name = document.querySelector('#pokeName');
+    // const name = document.querySelector('#pokeName'); 
+    const listCards = document.querySelector('#list-cards');
+    const pokeSprite = document.querySelector("#pokeSprite");
+    const pokemonList = []
 
+
+    
+    let tester = `https://pokeapi.co/api/v2/pokemon/${num}/`
+    let limit  = 100
     fetchPokeAPI(`https://pokeapi.co/api/v2/pokemon?limit=100`);
 
+    
     async function fetchPokeAPI(url){
         try{
             let index = 0;
@@ -15,7 +22,7 @@ window.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             data.results.forEach(async(ele) => {
 
-                //console.log(ele)
+                console.log(ele)
                 const url2 = `https://pokeapi.co/api/v2/pokemon/${ele.name}/`;
                 const response2 = await fetch(url2);
                 const data2 = await response2.json();
@@ -43,19 +50,35 @@ window.addEventListener('DOMContentLoaded', () => {
                 name.innerText = ` ${ele.name[0].toUpperCase() + ele.name.slice(1)}`;
 
                 list.addEventListener("mouseenter" , function(){
-                    console.log(ele.name)  //placeholder for later
+                    //console.log(ele.name)  //placeholder for later
                     pokeSprite.src = data2.sprites.front_default
                 })
                 // console.log(data2);
             });
+            
             // console.log(data.results);
             // sprite.scr = 
         }
         catch(error){
             console.log(error);
-
+            
         }
     }
 });
 
+class Pokemon{
+    constructor(name , atk , def , hp){
+        this.name = name
+        this.atk = atk
+        this.def = def
+        this.hp = hp
+        this.moves = []
+    }
+}
 
+class Player{
+    constructor(){
+
+    }
+
+}
