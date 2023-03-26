@@ -1,6 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
 
     const listCards = document.querySelector('#list-cards');
+    const pokeSprite = document.querySelector("#pokeSprite")
     // const sprite = document.querySelector('#poke-sprite');
     // const numPoke = document.querySelector('#idPoke');
     // const name = document.querySelector('#pokeName');
@@ -18,7 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 const url2 = `https://pokeapi.co/api/v2/pokemon/${ele.name}/`;
                 const response2 = await fetch(url2);
                 const data2 = await response2.json();
-                console.log(data2);
+                //console.log(data2);
 
                 let list = document.createElement('div');
                 list.id = 'card';
@@ -41,8 +42,9 @@ window.addEventListener('DOMContentLoaded', () => {
                 list.append(name);
                 name.innerText = ` ${ele.name[0].toUpperCase() + ele.name.slice(1)}`;
 
-                list.addEventListener("click" , function(){
+                list.addEventListener("mouseenter" , function(){
                     console.log(ele.name)  //placeholder for later
+                    pokeSprite.src = data2.sprites.front_default
                 })
                 // console.log(data2);
             });
@@ -51,6 +53,9 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         catch(error){
             console.log(error);
+
         }
     }
 });
+
+
