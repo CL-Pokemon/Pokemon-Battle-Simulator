@@ -18,7 +18,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 const url2 = `https://pokeapi.co/api/v2/pokemon/${ele.name}/`;
                 const response2 = await fetch(url2);
                 const data2 = await response2.json();
-                //console.log(data2);
+                console.log(data2);
 
                 let list = document.createElement('div');
                 list.id = 'card';
