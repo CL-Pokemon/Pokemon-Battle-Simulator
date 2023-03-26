@@ -1,3 +1,28 @@
+*{
+    margin: 0px;
+}
+
+#card{
+    margin-bottom: 10px;
+}
 #card:hover{
     background-color: orange;
+    cursor: pointer;
+}
+
+
+#list-cards{
+    width:50%;
+}
+
+.starter{
+    display: flex;
+}
+
+.aside{
+    width:45%;
+    position:fixed;
+    left: 55%;
+    background-color: blue;
+    height: 900px;
 }

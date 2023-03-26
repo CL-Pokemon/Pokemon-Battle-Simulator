@@ -14,11 +14,11 @@ window.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             data.results.forEach(async(ele) => {
 
-                console.log(ele)
+                //console.log(ele)
                 const url2 = `https://pokeapi.co/api/v2/pokemon/${ele.name}/`;
                 const response2 = await fetch(url2);
                 const data2 = await response2.json();
-                console.log(data2);
+                //console.log(data2);
 
                 let list = document.createElement('div');
                 list.id = 'card';
@@ -39,7 +39,11 @@ window.addEventListener('DOMContentLoaded', () => {
                 name.id = 'pokeName';
                 name.className = 'd-inline';
                 list.append(name);
-                name.innerText = `${ele.name[0].toUpperCase() + ele.name.slice(1)}`;
+                name.innerText = ` ${ele.name[0].toUpperCase() + ele.name.slice(1)}`;
+
+                list.addEventListener("click" , function(){
+                    console.log(ele.name)  //placeholder for later
+                })
                 // console.log(data2);
             });
             // console.log(data.results);
