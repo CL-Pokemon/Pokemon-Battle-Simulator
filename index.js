@@ -14,8 +14,13 @@ window.addEventListener('DOMContentLoaded', () => {
     const attack = document.querySelector('#resultAttack');
     const defense = document.querySelector('#resultDefense');
 
+    const pokemonList = []
+
+    let tester = `https://pokeapi.co/api/v2/pokemon/${num}/`
+    let limit  = 100
     fetchPokeAPI(`https://pokeapi.co/api/v2/pokemon?limit=100`);
 
+    
     async function fetchPokeAPI(url){
         try{
             let index = 0;
@@ -23,7 +28,7 @@ window.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             data.results.forEach(async(ele) => {
 
-                //console.log(ele)
+                console.log(ele)
                 const url2 = `https://pokeapi.co/api/v2/pokemon/${ele.name}/`;
                 const response2 = await fetch(url2);
                 const data2 = await response2.json();
@@ -72,9 +77,24 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         catch(error){
             console.log(error);
-
+            
         }
     }
 });
 
+class Pokemon{
+    constructor(name , atk , def , hp){
+        this.name = name
+        this.atk = atk
+        this.def = def
+        this.hp = hp
+        this.moves = []
+    }
+}
 
+class Player{
+    constructor(){
+
+    }
+
+}
