@@ -76,18 +76,41 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 class Pokemon{
+    #name
+    #atk
+    #def
+    #hp
+    #moves
     constructor(name , atk , def , hp){
-        this.name = name
-        this.atk = atk
-        this.def = def
-        this.hp = hp
-        this.moves = []
+        this.#name = name
+        this.#atk = atk
+        this.#def = def
+        this.#hp = hp
+        this.#moves = []
     }
+    get name(){
+        return this.#name
+    }
+    get atk(){
+        return this.#atk
+    }
+    get def(){
+        return this.#def
+    }
+    get hp(){
+        return this.#hp
+    }
+    get moves(){
+        return this.#moves
+    }  
+
 }
+
+
 
 class Player{
     constructor(){
-        
+        this.party = []
     }
 
 }
