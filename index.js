@@ -60,17 +60,14 @@ async function listPokemon(index){
 
 
 window.addEventListener('DOMContentLoaded', () => {
-
     let limit  = 100;
-    fetchPokeAPI(`https://pokeapi.co/api/v2/pokemon?limit=100`);
+    fetchPokeAPI();
 
-    
-    async function fetchPokeAPI(url){
+    async function fetchPokeAPI(){
         try{
             for(let index = 1; index <= limit; index++){
                 await listPokemon(index)
-            }
-            
+            }  
         }
         catch(error){
             console.log(error);     
