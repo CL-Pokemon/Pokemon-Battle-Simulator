@@ -16,8 +16,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const pokemonList = []
 
-    let tester = `https://pokeapi.co/api/v2/pokemon/${num}/`
-    let limit  = 100
+    // let tester = `https://pokeapi.co/api/v2/pokemon/${num}/`;
+    let limit  = 100;
     fetchPokeAPI(`https://pokeapi.co/api/v2/pokemon?limit=100`);
 
     
