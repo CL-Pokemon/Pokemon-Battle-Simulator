@@ -1,18 +1,26 @@
-const listCards = document.querySelector('#list-cards');
-const pokeSprite = document.querySelector("#pokeSprite")
-const logoSprite = document.querySelector('#logo-sprite');
-const numberPoke = document.querySelector('#idPoke');
-const namePoke = document.querySelector('#pokeName');
+const listCards = document.querySelector('#list-cards'),
+pokeSprite = document.querySelector("#pokeSprite"),
+logoSprite = document.querySelector('#logo-sprite'),
+numberPoke = document.querySelector('#idPoke'),
+namePoke = document.querySelector('#pokeName'),
 
-const type = document.querySelector('#resultType');
-const height = document.querySelector('#resultHeight');
-const weight = document.querySelector('#resultWeight');
+type = document.querySelector('#resultType'),
+height = document.querySelector('#resultHeight'),
+weight = document.querySelector('#resultWeight'),
 
-const hp = document.querySelector('#resultHp');
-const attack = document.querySelector('#resultAttack');
-const defense = document.querySelector('#resultDefense');
+hp = document.querySelector('#resultHp'),
+attack = document.querySelector('#resultAttack'),
+defense = document.querySelector('#resultDefense'),
 
-const pokemonList = []
+addButton = document.querySelector("#addToParty"),
+deleteButton = document.querySelector("#deleteFromParty"),
+
+pokemonList = []
+
+let currPoke = null,
+    maxParty = 1
+
+
 async function listPokemon(index){
     const url2 = `https://pokeapi.co/api/v2/pokemon/${index}/`;
     const response2 = await fetch(url2);
@@ -54,10 +62,10 @@ async function listPokemon(index){
         hp.innerText = data2.stats[0].base_stat;
         attack.innerText = data2.stats[1].base_stat;
         defense.innerText = data2.stats[2].base_stat;
-        
+        currPoke = data2.species.name
+        //console.log(currPoke)        
     })
 }
-
 
 window.addEventListener('DOMContentLoaded', () => {
     let limit  = 100;
@@ -73,7 +81,18 @@ window.addEventListener('DOMContentLoaded', () => {
             console.log(error);     
         }
     }
+
 });
+
+addButton.addEventListener("click" , () => {
+    player1.addPokemon(currPoke)
+    console.log(player1.party)
+})
+
+deleteButton.addEventListener("click" , () => {
+    player1.removePokemon(currPoke)
+    console.log(player1.party)
+})
 
 class Pokemon{
     #name
@@ -88,6 +107,7 @@ class Pokemon{
         this.#hp = hp
         this.#moves = []
     }
+
     get name(){
         return this.#name
     }
@@ -101,16 +121,55 @@ class Pokemon{
         return this.#hp
     }
     get moves(){
-        return this.#moves
-    }  
+        return this.moves
+    }
+
+    set moves(value){
+        this.#moves.push(value) // Needs further implementation
+    } 
+    set name(value){
+        this.#name = value
+    }
+    set atk(value){
+        this.#atk = value
+    }
+    set def(value){
+        this.#def = value
+    }
+    set hp(value){
+        this.#hp = value
+    }
 
 }
 
 
 
 class Player{
+    #party
     constructor(){
-        this.party = []
+        this.#party = {}
+    }
+
+    get party(){
+        return this.#party
+    }
+
+    addPokemon(name){
+        if(Object.keys(this.#party).length < maxParty && currPoke != null){
+            this.#party[name] = {"fainted" : false}
+        }else{
+            alert("Error: Can't add this pokemon to party.")
+        }
+    }
+
+    removePokemon(name){
+        if(this.#party.hasOwnProperty(name)){
+            delete this.#party[name]
+        }else{
+            alert("This pokemon isn't in the party")
+        }
     }
 
 }
+
+let player1 = new Player()
