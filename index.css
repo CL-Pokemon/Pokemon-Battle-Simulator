@@ -26,3 +26,12 @@
     background-color: blue;
     height: 900px;
 }
+#pokemon-topbar{
+    background-color: azure;
+}
+#pokeStats-top{
+    background-color: blueviolet;
+}
+#pokeStats-bot{
+    background-color: brown;
+}

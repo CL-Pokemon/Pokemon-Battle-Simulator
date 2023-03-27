@@ -2,9 +2,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const listCards = document.querySelector('#list-cards');
     const pokeSprite = document.querySelector("#pokeSprite")
-    // const sprite = document.querySelector('#poke-sprite');
-    // const numPoke = document.querySelector('#idPoke');
-    // const name = document.querySelector('#pokeName');
+    const logoSprite = document.querySelector('#logo-sprite');
+    const numberPoke = document.querySelector('#idPoke');
+    const namePoke = document.querySelector('#pokeName');
+
+    const type = document.querySelector('#resultType');
+    const height = document.querySelector('#resultHeight');
+    const weight = document.querySelector('#resultWeight');
+
+    const hp = document.querySelector('#resultHp');
+    const attack = document.querySelector('#resultAttack');
+    const defense = document.querySelector('#resultDefense');
 
     fetchPokeAPI(`https://pokeapi.co/api/v2/pokemon?limit=100`);
 
@@ -43,13 +51,24 @@ window.addEventListener('DOMContentLoaded', () => {
                 name.innerText = ` ${ele.name[0].toUpperCase() + ele.name.slice(1)}`;
 
                 list.addEventListener("mouseenter" , function(){
-                    console.log(ele.name)  //placeholder for later
-                    pokeSprite.src = data2.sprites.front_default
+                    console.log(data2);
+                    console.log(ele)  //placeholder for later
+                    pokeSprite.src = data2.sprites.front_default;
+                    logoSprite.src = data2.sprites.front_default;
+                    numberPoke.innerText = numPoke.innerText;
+                    namePoke.innerText = name.innerText;
+                    let listType = data2.types.map(ele => {
+                        return ele.type.name[0].toUpperCase() + ele.type.name.slice(1);
+                    });
+                    type.innerText = listType.join(' ');
+                    height.innerText = `${data2.height} Cm`;
+                    weight.innerText = `${data2.weight} Lbs`
+                    hp.innerText = data2.stats[0].base_stat;
+                    attack.innerText = data2.stats[1].base_stat;
+                    defense.innerText = data2.stats[2].base_stat;
+                    
                 })
-                // console.log(data2);
-            });
-            // console.log(data.results);
-            // sprite.scr = 
+            })
         }
         catch(error){
             console.log(error);
