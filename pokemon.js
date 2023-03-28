@@ -11,7 +11,7 @@ export default class Pokemon{
         this.#atk = atk
         this.#def = def
         this.#hp = hp
-        this.#type = type 
+        this.#type = type
         this.#possibleMoves = []
         this.#moves = []
     }
@@ -33,6 +33,9 @@ export default class Pokemon{
     }
     get possibleMoves(){
         return this.#possibleMoves
+    }
+    get type(){
+        return this.#type
     }
 
     
