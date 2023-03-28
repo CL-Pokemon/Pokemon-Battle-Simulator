@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import Pokemon from "./pokemon.js";
 
 const listCards = document.querySelector('#list-cards'),
@@ -7,14 +6,6 @@ logoSprite = document.querySelector('#logo-sprite'),
 numberPoke = document.querySelector('#idPoke'),
 namePoke = document.querySelector('#pokeName'),
 
-=======
-const listCards = document.querySelector('#list-cards'),
-pokeSprite = document.querySelector("#pokeSprite"),
-logoSprite = document.querySelector('#logo-sprite'),
-numberPoke = document.querySelector('#idPoke'),
-namePoke = document.querySelector('#pokeName'),
-
->>>>>>> c0531b12da93731c2fe528b515dbf31ffcb63809
 type = document.querySelector('#resultType'),
 height = document.querySelector('#resultHeight'),
 weight = document.querySelector('#resultWeight'),
@@ -105,59 +96,9 @@ deleteButton.addEventListener("click" , () => {
     console.log(player1.party)
 })
 
-<<<<<<< HEAD
 
 
 
-=======
-class Pokemon{
-    #name
-    #atk
-    #def
-    #hp
-    #moves
-    constructor(name , atk , def , hp){
-        this.#name = name
-        this.#atk = atk
-        this.#def = def
-        this.#hp = hp
-        this.#moves = []
-    }
-
-    get name(){
-        return this.#name
-    }
-    get atk(){
-        return this.#atk
-    }
-    get def(){
-        return this.#def
-    }
-    get hp(){
-        return this.#hp
-    }
-    get moves(){
-        return this.moves
-    }
-
-    set moves(value){
-        this.#moves.push(value) // Needs further implementation
-    } 
-    set name(value){
-        this.#name = value
-    }
-    set atk(value){
-        this.#atk = value
-    }
-    set def(value){
-        this.#def = value
-    }
-    set hp(value){
-        this.#hp = value
-    }
-
-}
->>>>>>> c0531b12da93731c2fe528b515dbf31ffcb63809
 
 
 
