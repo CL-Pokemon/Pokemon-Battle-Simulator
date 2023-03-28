@@ -23,18 +23,17 @@ let currPoke = null,
 
 
 async function addPossibleMove(pokeName , element){
-    //console.log(element)
     const moveResponse = await fetch(element.move.url);
     const moveData = await moveResponse.json();
-    //console.log(moveData)
     if((moveData.damage_class.name == "physical") && (moveData.power != null)){
         let move = {}
         move[moveData.name] = {}
         move[moveData.name]["power"] = moveData.power
         move[moveData.name]["type"] = moveData.type.name
         move[moveData.name]["pp"] = moveData.pp 
+        move[moveData.name]["accuracy"] = moveData.accuracy
         pokemonList[pokeName].addPossibleMoves(move) 
-        //console.log(move)
+        
     }
 }
 
