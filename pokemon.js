@@ -8,7 +8,8 @@ export default class Pokemon{
     #moves
     #type
     #speed
-    constructor(name , hp , atk , def , speed , type){
+    #backSprite
+    constructor(name , hp , atk , def , speed , type , backSprite){
         this.#typeColor = {"normal" : [168 , 168 , 120] , "fighting" :  [192 , 48 , 40] , "flying" : [168 , 144 , 240] , "poison" : [160 , 64 , 160] , "ground" : [224 , 192 , 104] , "rock" : [184 , 160 , 56] , "bug" : [168 , 184 , 32] , "ghost" : [112 , 88 , 152] , "steel" : [184 , 184 , 208] , "fire" : [240 , 128 , 48] , "water" : [104 , 144 , 240] , "grass" : [120 , 200 , 80] , "electric" : [248 , 208 , 48] , "psychic" : [248 , 88 , 136] , "ice" : [152 , 216 , 216] , "dragon" : [112 , 56 , 248] , "dark" : [112 , 88 , 72] , "fairy" : [238 , 153 , 172]}
         this.#name = name
         this.#atk = atk
@@ -18,6 +19,7 @@ export default class Pokemon{
         this.#type = type
         this.#possibleMoves = []
         this.#moves = []
+        this.#backSprite = backSprite
     }
 
     get name(){
@@ -47,6 +49,9 @@ export default class Pokemon{
     get colors(){
         return this.#typeColor
     }
+    get backSprite(){
+        return this.#backSprite
+    }
 
     
     set moves(value){
@@ -73,5 +78,13 @@ export default class Pokemon{
     addPossibleMoves(value){
         this.#possibleMoves.push(value) 
     }
+    setMoves(){
+        let limit =  this.#possibleMoves.length
+        while(this.#moves.length < 4){
+            
+        }
+    }
+
+    
 
 }

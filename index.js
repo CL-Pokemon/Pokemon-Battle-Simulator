@@ -18,7 +18,7 @@ addButton = document.querySelector("#addToParty"),
 deleteButton = document.querySelector("#deleteFromParty")
 
 let currPoke = null,
-    maxParty = 6, 
+    maxParty = 1, 
     pokemonList = {}
 
 
@@ -28,12 +28,12 @@ async function addPossibleMove(pokeName , element){
     if((moveData.damage_class.name == "physical") && (moveData.power != null)){
         let move = {}
         move[moveData.name] = {}
+        move[moveData.name]["name"] = moveData.name
         move[moveData.name]["power"] = moveData.power
         move[moveData.name]["type"] = moveData.type.name
         move[moveData.name]["pp"] = moveData.pp 
         move[moveData.name]["accuracy"] = moveData.accuracy
-        pokemonList[pokeName].addPossibleMoves(move) 
-        
+        pokemonList[pokeName].addPossibleMoves(move)     
     }
 }
 
@@ -83,14 +83,14 @@ async function listPokemon(index){
         //console.log(currPoke)        
     })
 
-    pokemonList[pokeName] = new Pokemon(pokeName , data2.stats[0].base_stat , data2.stats[1].base_stat , data2.stats[2].base_stat , data2.stats[5].base_stat , {0 : null , 1 : null})
+    pokemonList[pokeName] = new Pokemon(pokeName , data2.stats[0].base_stat , data2.stats[1].base_stat , data2.stats[2].base_stat , data2.stats[5].base_stat , {0 : null , 1 : null} , data2.sprites.back_default)
     
     data2.moves.forEach(element => addPossibleMove(pokeName , element));
     
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    let limit  = 100;
+    let limit  = 50;
     fetchPokeAPI();
 
     async function fetchPokeAPI(){
