@@ -65,7 +65,7 @@ async function listPokemon(index){
         attack.innerText = data2.stats[1].base_stat;
         defense.innerText = data2.stats[2].base_stat;
         currPoke = data2.species.name
-        console.log(currPoke)        
+        //console.log(currPoke)        
     })
 }
 
