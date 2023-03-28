@@ -4,12 +4,14 @@ export default class Pokemon{
     #def
     #hp
     #moves
-    constructor(name , atk , def , hp){
+    #type 
+    
+    constructor(name , atk , def , hp , type){
         this.#name = name
         this.#atk = atk
         this.#def = def
         this.#hp = hp
-        this.#moves = []
+        this.#moves = []   
     }
 
     get name(){
@@ -43,5 +45,4 @@ export default class Pokemon{
     set hp(value){
         this.#hp = value
     }
-
 }

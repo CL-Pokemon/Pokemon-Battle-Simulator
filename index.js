@@ -17,7 +17,7 @@ defense = document.querySelector('#resultDefense'),
 addButton = document.querySelector("#addToParty"),
 deleteButton = document.querySelector("#deleteFromParty"),
 
-pokemonList = []
+pokemonList = [] 
 
 let currPoke = null,
     maxParty = 1
@@ -85,7 +85,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-});
+}); 
 
 addButton.addEventListener("click" , () => {
     player1.addPokemon(currPoke)
