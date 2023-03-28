@@ -15,19 +15,35 @@ attack = document.querySelector('#resultAttack'),
 defense = document.querySelector('#resultDefense'),
 
 addButton = document.querySelector("#addToParty"),
-deleteButton = document.querySelector("#deleteFromParty"),
-
-pokemonList = []
+deleteButton = document.querySelector("#deleteFromParty")
 
 let currPoke = null,
-    maxParty = 1
+    maxParty = 6, 
+    pokemonList = {}
 
+
+async function addPossibleMove(pokeName , element){
+    //console.log(element)
+    const moveResponse = await fetch(element.move.url);
+    const moveData = await moveResponse.json();
+    //console.log(moveData)
+    if((moveData.damage_class.name == "physical") && (moveData.power != null)){
+        let move = {}
+        move[moveData.name] = {}
+        move[moveData.name]["power"] = moveData.power
+        move[moveData.name]["type"] = moveData.type.name
+        move[moveData.name]["pp"] = moveData.pp 
+        pokemonList[pokeName].addPossibleMoves(move) 
+        //console.log(move)
+    }
+}
 
 async function listPokemon(index){
     const url2 = `https://pokeapi.co/api/v2/pokemon/${index}/`;
     const response2 = await fetch(url2);
     const data2 = await response2.json();
     const pokeName = data2.forms[0].name
+
 
     let list = document.createElement('div');
     list.id = 'card';
@@ -67,6 +83,11 @@ async function listPokemon(index){
         currPoke = data2.species.name
         //console.log(currPoke)        
     })
+
+    pokemonList[pokeName] = new Pokemon(pokeName , data2.stats[0].base_stat , data2.stats[1].base_stat , data2.stats[2].base_stat , data2.stats[5].base_stat , {0 : null , 1 : null})
+    
+    data2.moves.forEach(element => addPossibleMove(pokeName , element));
+    
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -78,6 +99,8 @@ window.addEventListener('DOMContentLoaded', () => {
             for(let index = 1; index <= limit; index++){
                 await listPokemon(index)
             }  
+            console.log(pokemonList)
+            //console.log(Object.keys(pokemonList).length)
         }
         catch(error){
             console.log(error);     

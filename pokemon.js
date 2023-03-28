@@ -1,4 +1,3 @@
-
 export default class Pokemon{
     #name
     #atk
@@ -7,11 +6,13 @@ export default class Pokemon{
     #possibleMoves
     #moves
     #type
-    constructor(name , atk , def , hp , type){
+    #speed
+    constructor(name , hp , atk , def , speed , type){
         this.#name = name
         this.#atk = atk
         this.#def = def
         this.#hp = hp
+        this.#speed  = speed
         this.#type = type
         this.#possibleMoves = []
         this.#moves = []
@@ -29,6 +30,9 @@ export default class Pokemon{
     get hp(){
         return this.#hp
     }
+    get speed(){
+        return this.#speed
+    }
     get moves(){
         return this.moves
     }
@@ -44,9 +48,6 @@ export default class Pokemon{
         if(this.#moves.length < 4){
             this.#moves.push(value) 
         }
-    } 
-    set possibleMoves(value){
-        this.#possibleMoves.push(value) 
     }
     set name(value){
         this.#name = value
@@ -59,6 +60,13 @@ export default class Pokemon{
     }
     set hp(value){
         this.#hp = value
+    }
+    set speed(value){
+        this.#speed = value
+    }
+
+    addPossibleMoves(value){
+        this.#possibleMoves.push(value) 
     }
 
 }
