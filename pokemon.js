@@ -36,7 +36,7 @@ export default class Pokemon{
         return this.#speed
     }
     get moves(){
-        return this.moves
+        return this.#moves
     }
     get possibleMoves(){
         return this.#possibleMoves
