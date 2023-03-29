@@ -15,7 +15,10 @@ attack = document.querySelector('#resultAttack'),
 defense = document.querySelector('#resultDefense'),
 
 addButton = document.querySelector("#addToParty"),
-deleteButton = document.querySelector("#deleteFromParty")
+deleteButton = document.querySelector("#deleteFromParty"),
+fightButton = document.querySelector('#fightingScene')
+
+
 
 let currPoke = null,
     maxParty = 1, 
@@ -115,9 +118,11 @@ addButton.addEventListener("click" , () => {
 
 deleteButton.addEventListener("click" , () => {
     player1.removePokemon(currPoke)
-    console.log(player1.party)
+    console.log(player1.party);
 })
-
+fightButton.addEventListener('click', ()=>{
+    player1.requirements();
+})
 
 
 
@@ -149,7 +154,13 @@ class Player{
             alert("This pokemon isn't in the party")
         }
     }
-
+    requirements(){
+        if(Object.keys(this.#party).length === maxParty){
+            window.location.href = 'battle.html';
+        }else{
+            alert("No pokemon in the party")
+        }  
+    }
 }
 
 let player1 = new Player()
