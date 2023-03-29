@@ -15,19 +15,34 @@ attack = document.querySelector('#resultAttack'),
 defense = document.querySelector('#resultDefense'),
 
 addButton = document.querySelector("#addToParty"),
-deleteButton = document.querySelector("#deleteFromParty"),
-
-pokemonList = [] 
+deleteButton = document.querySelector("#deleteFromParty")
 
 let currPoke = null,
-    maxParty = 1
+    maxParty = 1, 
+    pokemonList = {}
 
+
+async function addPossibleMove(pokeName , element){
+    const moveResponse = await fetch(element.move.url);
+    const moveData = await moveResponse.json();
+    if((moveData.damage_class.name == "physical") && (moveData.power != null)){
+        let move = {}
+        move[moveData.name] = {}
+        move[moveData.name]["name"] = moveData.name
+        move[moveData.name]["power"] = moveData.power
+        move[moveData.name]["type"] = moveData.type.name
+        move[moveData.name]["pp"] = moveData.pp 
+        move[moveData.name]["accuracy"] = moveData.accuracy
+        pokemonList[pokeName].addPossibleMoves(move)     
+    }
+}
 
 async function listPokemon(index){
     const url2 = `https://pokeapi.co/api/v2/pokemon/${index}/`;
     const response2 = await fetch(url2);
     const data2 = await response2.json();
     const pokeName = data2.forms[0].name
+
 
     let list = document.createElement('div');
     list.id = 'card';
@@ -65,13 +80,17 @@ async function listPokemon(index){
         attack.innerText = data2.stats[1].base_stat;
         defense.innerText = data2.stats[2].base_stat;
         currPoke = data2.species.name
-        console.log(data2)
         //console.log(currPoke)        
     })
+
+    pokemonList[pokeName] = new Pokemon(pokeName , data2.stats[0].base_stat , data2.stats[1].base_stat , data2.stats[2].base_stat , data2.stats[5].base_stat , {0 : null , 1 : null} , data2.sprites.back_default)
+    
+    data2.moves.forEach(element => addPossibleMove(pokeName , element));
+    
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    let limit  = 100;
+    let limit  = 50;
     fetchPokeAPI();
 
     async function fetchPokeAPI(){
@@ -79,6 +98,8 @@ window.addEventListener('DOMContentLoaded', () => {
             for(let index = 1; index <= limit; index++){
                 await listPokemon(index)
             }  
+            console.log(pokemonList)
+            //console.log(Object.keys(pokemonList).length)
         }
         catch(error){
             console.log(error);     
@@ -96,6 +117,8 @@ deleteButton.addEventListener("click" , () => {
     player1.removePokemon(currPoke)
     console.log(player1.party)
 })
+
+
 
 
 
