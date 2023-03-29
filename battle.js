@@ -35,7 +35,7 @@ async function listPokemonParty(pokeName){
     }
     player1_Party[pokeName] = new Pokemon(pokeName , data2.stats[0].base_stat , data2.stats[1].base_stat , data2.stats[2].base_stat , data2.stats[5].base_stat , type , data2.sprites.back_default)
     data2.moves.forEach(element => addPossibleMove(pokeName , element))
-    // player1_Party[pokeName].setMoves()
+    player1_Party[pokeName].setMoves()
 }
 
 function battle(){
