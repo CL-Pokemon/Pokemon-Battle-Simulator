@@ -1,37 +1,46 @@
 *{
     margin: 0px;
 }
-
+body{
+    background-color: #2a9d8f;
+}
 #card{
     margin-bottom: 10px;
+    border-radius: 7ch;
 }
 #card:hover{
-    background-color: orange;
+    background-color: #f4a261;
     cursor: pointer;
 }
-
-
 #list-cards{
     width:50%;
 }
-
 .starter{
     display: flex;
 }
-
+#container{
+    border-radius: 10ch;
+    background-color: #e9c46a;
+}
 #aside{
     width:45%;
     position:fixed;
     left: 55%;
-    background-color: blue;
-    height: 900px;
+    background-color: #264653;
+    height: 100%;
 }
 #section{
-    background-color: azure;
+    background-color: #f4a261;
+    border-radius: 2cm;
 }
 #pokeStats-top{
-    background-color: blueviolet;
+    background-color: #e76f51;
+    border-radius: 1cm;
 }
 #pokeStats-bot{
-    background-color: brown;
+    background-color: grey;
+    border-radius: 1cm;
+}
+#addToParty, #deleteFromParty, #fightingScene{
+    border-radius: 12cm;
 }
