@@ -1,0 +1,41 @@
+#BossSprite{
+    height: 120px;
+    position:absolute;
+    left:800px;
+    top: 200px;
+}
+
+#pokemonSprite{
+    height: 250px;
+    position:absolute;
+    left:250px;
+    top: 330px;
+}
+
+#playerHealthBar{
+    width: 100%;
+    transition: width 100ms;
+
+}
+
+#BossHealthBar{
+    width: 100%;
+    transition: width 250ms;
+}
+
+#textBox{
+    width: 1200px;
+    height: 200px;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 5px;
+    margin-bottom: 10px;
+    margin-top:-30px;
+}
+
+#bottomPanel{
+    background-color: red;
+    width: 1200px;
+    height: 450px;
+}
+
