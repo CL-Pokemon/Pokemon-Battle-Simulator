@@ -90,7 +90,7 @@ async function listPokemon(index){
     pokemonList[pokeName] = new Pokemon(pokeName , data2.stats[0].base_stat , data2.stats[1].base_stat , data2.stats[2].base_stat , data2.stats[5].base_stat , {0 : null , 1 : null} , data2.sprites.back_default)
     data2.moves.forEach(element => addPossibleMove(pokeName , element));
 
-    //windpw.localStorage.setItem()
+    window.localStorage.setItem(pokeName , JSON.stringify(pokemonList[pokeName]))
     
 }
 
@@ -123,7 +123,7 @@ deleteButton.addEventListener("click" , () => {
     console.log(player1.party);
 })
 fightButton.addEventListener('click', ()=>{
-    window.localStorage.setItem("pokeDex" , JSON.stringify(pokemonList))
+    //window.localStorage.setItem("pokeDex" , JSON.stringify(pokemonList))
     
     if(Object.keys(pokemonList).length == limit){
         player1.requirements();

@@ -24,8 +24,8 @@ window.addEventListener('DOMContentLoaded', ()=>{
     // }
 
     let player1 = JSON.parse(window.localStorage.getItem("player1"))
-    let pokemonDeck = JSON.parse(window.localStorage.getItem("pokeDex"))
+    let charmander = JSON.parse(window.localStorage.getItem("charmander"))
     console.log(player1)
     //console.log(Object.keys(pokemonDeck).length) 
-    console.log(pokemonDeck)
+    console.log(charmander)
 });
