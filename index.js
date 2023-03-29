@@ -22,7 +22,8 @@ fightButton = document.querySelector('#fightingScene')
 
 let currPoke = null,
     maxParty = 1, 
-    pokemonList = {}
+    pokemonList = {},
+    limit = 50
 
 
 async function addPossibleMove(pokeName , element){
@@ -87,13 +88,13 @@ async function listPokemon(index){
     })
 
     pokemonList[pokeName] = new Pokemon(pokeName , data2.stats[0].base_stat , data2.stats[1].base_stat , data2.stats[2].base_stat , data2.stats[5].base_stat , {0 : null , 1 : null} , data2.sprites.back_default)
-    
     data2.moves.forEach(element => addPossibleMove(pokeName , element));
+
+    //windpw.localStorage.setItem()
     
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    let limit  = 50;
     fetchPokeAPI();
 
     async function fetchPokeAPI(){
@@ -114,6 +115,7 @@ window.addEventListener('DOMContentLoaded', () => {
 addButton.addEventListener("click" , () => {
     player1.addPokemon(currPoke)
     console.log(player1.party)
+    window.localStorage.setItem("player1" , JSON.stringify(player1.party))
 })
 
 deleteButton.addEventListener("click" , () => {
@@ -121,7 +123,14 @@ deleteButton.addEventListener("click" , () => {
     console.log(player1.party);
 })
 fightButton.addEventListener('click', ()=>{
-    player1.requirements();
+    window.localStorage.setItem("pokeDex" , JSON.stringify(pokemonList))
+    
+    if(Object.keys(pokemonList).length == limit){
+        player1.requirements();
+    }else{
+        alert("Please wait. Page hasnt finished loading")
+    }
+        
 })
 
 
@@ -156,6 +165,7 @@ class Player{
     }
     requirements(){
         if(Object.keys(this.#party).length === maxParty){
+
             window.location.href = 'battle.html';
         }else{
             alert("No pokemon in the party")
