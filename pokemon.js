@@ -83,7 +83,7 @@ export default class Pokemon{
         while(this.#moves.length < 4){
             let position = Math.floor(limit * Math.random())
             //if(!this.#moves.includes(this.#possibleMoves[position])){
-            this.moves.push(this.#possibleMoves[position])
+            this.#moves.push(this.#possibleMoves[position])
             //}
         }
     }
