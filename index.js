@@ -49,6 +49,7 @@ async function listPokemon(index){
 
     let list = document.createElement('div');
     list.id = 'card';
+    list.className = 'd-inline-flex align-items-center m2'
     listCards.append(list);
     let img = document.createElement('img');
     img.id = 'poke-sprite';
@@ -58,13 +59,13 @@ async function listPokemon(index){
     
     let numPoke = document.createElement('p');
     numPoke.id = 'idPoke';
-    numPoke.className = 'd-inline';
+    numPoke.className = 'm-2';
     list.append(numPoke);
     numPoke.innerText = `No. ${index}`;
 
     let name = document.createElement('p');
     name.id = 'pokeName';
-    name.className = 'd-inline';
+    name.className = 'm-2';
     list.append(name);
     name.innerText = ` ${pokeName[0].toUpperCase() + pokeName.slice(1)}`;
 
@@ -143,7 +144,8 @@ class Player{
         if(Object.keys(this.#party).length < maxParty && currPoke != null){
             this.#party[name] = {"fainted" : false}
         }else{
-            alert("Error: Can't add this pokemon to party.")
+            // alert("Error: Can't add this pokemon to party.")
+            document.getElementById('addPoptext').classList.toggle('show');
         }
     }
 
@@ -151,14 +153,16 @@ class Player{
         if(this.#party.hasOwnProperty(name)){
             delete this.#party[name]
         }else{
-            alert("This pokemon isn't in the party")
+            // alert("This pokemon isn't in the party")
+            document.getElementById('removePoptext').classList.toggle('show');
         }
     }
     requirements(){
         if(Object.keys(this.#party).length === maxParty){
             window.location.href = 'battle.html';
         }else{
-            alert("No pokemon in the party")
+            // alert("No pokemon in the party")
+            document.getElementById('fightPoptext').classList.toggle('show');
         }  
     }
 }
