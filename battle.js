@@ -7,7 +7,10 @@ player1_currentPokemon = null,
 initial = document.querySelector("#bottomPanel-initial"),
 movesArray = document.querySelector("#bottomPanel-moves"),
 deleteButton = document.querySelector("#delete"),
-player1_currentMove = null
+player1_currentMove = null, 
+textBox = document.querySelector("#textBox")
+
+textBox.innerText = `What will ${Object.getOwnPropertyNames(player1)[0]} do?`
 
 const playerSprite = document.querySelector("#pokemonSprite")
 const bossSprite = document.querySelector("#BossSprite")
@@ -46,6 +49,7 @@ function battleDamage(){
 }
 
 function battle(){
+
     let player1_pokemonNames = Object.getOwnPropertyNames(player1)
     player1_currentPokemon = player1_Party[player1_pokemonNames[0]]
     playerSprite.src = player1_currentPokemon.backSprite
