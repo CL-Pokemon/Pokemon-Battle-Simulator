@@ -155,8 +155,8 @@ class Player{
         if(Object.keys(this.#party).length < maxParty && currPoke != null){
             this.#party[name] = {"fainted" : false}
         }else{
-            // alert("Error: Can't add this pokemon to party.")
-            document.getElementById('addPoptext').classList.toggle('show');
+            alert("Error: Can't add this pokemon to party.")
+            // document.getElementById('addPoptext').classList.toggle('show');
         }
     }
 
@@ -164,16 +164,16 @@ class Player{
         if(this.#party.hasOwnProperty(name)){
             delete this.#party[name]
         }else{
-            // alert("This pokemon isn't in the party")
-            document.getElementById('removePoptext').classList.toggle('show');
+            alert("This pokemon isn't in the party")
+            // document.getElementById('removePoptext').classList.toggle('show');
         }
     }
     requirements(){
         if(Object.keys(this.#party).length === maxParty){
             window.location.href = 'battle.html';
         }else{
-            // alert("No pokemon in the party")
-            document.getElementById('fightPoptext').classList.toggle('show');
+            alert("No pokemon in the party")
+            // document.getElementById('fightPoptext').classList.toggle('show');
         }  
     }
 }
