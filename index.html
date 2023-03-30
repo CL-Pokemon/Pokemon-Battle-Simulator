@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,78 +10,88 @@
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" href="index.css" />
 </head>
-<body id = "body">
 
-    <!-- Menu -->
-    <div id = "startPage" style="display: show;">
-        <div id = "containerStartPage">
-            <h1>Pokemon Battle Simulator</h1>
-            <button class = "btn btn-light" id="playbtn">PLAY</button>
+<body>
+    <div id="body">
+
+        <!-- Menu -->
+        <div id="startPage" style="display: show;">
+            <div id="containerStartPage">
+                <h1>Pokemon Battle Simulator</h1>
+                <button class="btn btn-light" id="playbtn">PLAY</button>
+            </div>
         </div>
-    </div>
 
-    <div class="starter row align-items-start">
-        <div class='col-6 col-sm-3' id='list-cards'>
-            <!-- <div id = 'card'>
+        <div class="starter row align-items-start">
+            <div class='col-6 col-sm-3' id='list-cards'>
+                <!-- <div id = 'card'>
                 <img class = 'd-inline' id = 'poke-sprite'/>
                 <p class = 'd-inline' id = 'idPoke'># of Pokemon</p>
                 <p class = 'd-inline' id = 'pokeName'>Name Pokemon</p>
                 <img class = 'd-inline' id = 'poke-ball'/>
             </div> -->
-        </div>
-        <div class = 'col-6 col-sm-3' id='aside'>
-            <div id='container'>
-                <div id='section'>
-                    <div class='d-block text-bg mx-auto p-2 text-center' id="pokemon-topbar" style = 'height: 100%;'>
-                        <div class = 'row align-items-center' id = 'leftSide' style = 'height: 100%;'>
-                            <img class = 'col-sm-2' alt = 'PokemonSprite' id = 'logo-sprite' style="height: 100%;"/>
-                            <div  class = 'col-sm-3' id = 'idPoke'>No.008</div>
-                            <div class =' col-sm-5' id = 'pokeName'>Name</div>
-                            <img class = 'col-sm-2' alt = 'PokeBall-Logo' src = 'https://www.freepnglogos.com/uploads/pokeball-png/pokeball-icon-download-icons-32.png' style = 'height: 100%;' id = "pokeBall-logo"/>
+            </div>
+            <div class='col-6 col-sm-3' id='aside'>
+                <div id='container'>
+                    <div id='section'>
+                        <div class='d-block text-bg mx-auto p-2 text-center' id="pokemon-topbar" style='height: 100%;'>
+                            <div class='row align-items-center' id='leftSide' style='height: 100%;'>
+                                <img class='col-sm-2' alt='PokemonSprite' id='logo-sprite' style="height: 100%;" />
+                                <div class='col-sm-3' id='idPoke'>No.008</div>
+                                <div class=' col-sm-5' id='pokeName'>Name</div>
+                                <img class='col-sm-2' alt='PokeBall-Logo'
+                                    src='https://www.freepnglogos.com/uploads/pokeball-png/pokeball-icon-download-icons-32.png'
+                                    style='height: 100%;' id="pokeBall-logo" />
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class = 'row align-items-center'>
-                    <img class='col-sm-8 col-md-8 col-lg-8 offset-sm-2 offset-md-2 offset-lg-2' id="pokeSprite" alt="Pokemon Sprite" style = "height: 20vw">
-                </div>    
-                    <div id = 'pokeStats-top'>
+                    <div class='row align-items-center'>
+                        <img class='col-sm-8 col-md-8 col-lg-8 offset-sm-2 offset-md-2 offset-lg-2' id="pokeSprite"
+                            alt="Pokemon Sprite" style="height: 20vw">
+                    </div>
+                    <div id='pokeStats-top'>
                         <div class='row align-items-center text-center'>
-                            <div class='col-md-5 col-sm-5' id = 'typeState'>Type</div>
+                            <div class='col-md-5 col-sm-5' id='typeState'>Type</div>
                             <div class='col-md-7 col-sm-7' id='resultType'>5</div>
                         </div>
                         <div class='row align-items-center text-center'>
-                            <div class='col-md-5 col-sm-5' id = 'heightStat'>Height</div>
+                            <div class='col-md-5 col-sm-5' id='heightStat'>Height</div>
                             <div class='col-md-7 col-sm-7' id='resultHeight'>5</div>
                         </div>
                         <div class='row align-items-center text-center'>
-                            <div class='col-md-5 col-sm-5' id = 'weightStat'>Weight</div>
+                            <div class='col-md-5 col-sm-5' id='weightStat'>Weight</div>
                             <div class='col-md-7 col-sm-7' id='resultWeight'>5</div>
                         </div>
                     </div>
                     <div id="pokeStats-bot">
-                        <div class = 'row align-items-center text-center'>
-                            <div class = 'col-md-5 col-sm-5' id = 'hpStat'>Hp</div>
-                            <div class = 'col-md-7 col-sm-7' id = 'resultHp'>59</div>
+                        <div class='row align-items-center text-center'>
+                            <div class='col-md-5 col-sm-5' id='hpStat'>Hp</div>
+                            <div class='col-md-7 col-sm-7' id='resultHp'>59</div>
                         </div>
-                        <div class = 'row align-items-center text-center'>
-                            <div class = 'col-md-5 col-sm-5' id = 'attackStat'>Attack</div>
-                            <div class = 'col-md-7 col-sm-7' id = 'resultAttack'>59</div>
+                        <div class='row align-items-center text-center'>
+                            <div class='col-md-5 col-sm-5' id='attackStat'>Attack</div>
+                            <div class='col-md-7 col-sm-7' id='resultAttack'>59</div>
                         </div>
-                        <div class = 'row align-items-center text-center'>
-                            <div class = 'col-md-5 col-sm-5' id = 'defenseStat'>Defense</div>
-                            <div class = 'col-md-7 col-sm-7' id = 'resultDefense'>59</div>
+                        <div class='row align-items-center text-center'>
+                            <div class='col-md-5 col-sm-5' id='defenseStat'>Defense</div>
+                            <div class='col-md-7 col-sm-7' id='resultDefense'>59</div>
                         </div>
                     </div>
-                    <div class = 'row'>
-                        <button class = 'col-4 offset-2 btn btn-success' id = "addToParty">Add</button>
-                        <button class = 'col-4 btn btn-danger' id = "deleteFromParty">Remove</button>
+                    <div class='row'>
+                        <button class='col-4 offset-2 btn btn-success' id="addToParty">Add</button>
+                        <button class='col-4 btn btn-danger' id="deleteFromParty">Remove</button>
                     </div>
-                    <div class = 'row'>
-                        <button class = 'col-6 offset-3 btn btn-primary' id = "fightingScene">Fight</button>
+                    <div class='row'>
+                        <button class='col-6 offset-3 btn btn-primary' id="fightingScene">Fight</button>
                     </div>
+                </div>
+                <div id = "footer" style = "background-color: blue;height: 100px; position: initial;margin-top: 25%;color:azure">
+                    Pokemon
                 </div>
             </div>
         </div>
-        <script src="index.js" type = "module"></script>
+    </div>
+    <script src="index.js" type="module"></script>
 </body>
+
 </html>
