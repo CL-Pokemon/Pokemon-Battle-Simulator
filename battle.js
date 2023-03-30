@@ -88,7 +88,7 @@ function battle(){
 
     attack.addEventListener("click" , function(){
         initial.style.display = "none"
-        movesArray.style.display = "block" // update later
+        movesArray.style.display = "grid" // update later
     })
 
     runAway.addEventListener("click" , function(){
