@@ -67,7 +67,8 @@ function battle(){
         //pokeAttack.style.backgroundColor = `rgb()`
         //pokeAttack.style.borderColor = `rgb()`
         //
-        //element.addEventListener("click" , battleDamage)
+        //pokeAttack.addEventListener("click" , battleDamage)
+        //
 
         
     });
