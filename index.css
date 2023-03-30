@@ -73,3 +73,8 @@ body{
     position: relative;
     text-align: center;
 }
+@media screen and (max-width:575px) {
+    img#pokeBall-logo.col-sm-2{
+        display: none;
+    }
+}
