@@ -3,7 +3,6 @@
 }
 body{
     background-color: #2a9d8f;
-    /* when play gets clicked  */
     overflow-y:hidden;
 }
 #startPage{
@@ -39,7 +38,7 @@ body{
     cursor: pointer;
 }
 #list-cards{
-    width:50%;
+    /* width:50%; */
 }
 .starter{
     display: flex;

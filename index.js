@@ -50,11 +50,11 @@ async function listPokemon(index){
 
     let list = document.createElement('div');
     list.id = 'card';
-    list.className = 'd-inline-flex align-items-center m2'
+    list.className = 'd-flex align-items-center m2'
     listCards.append(list);
     let img = document.createElement('img');
     img.id = 'poke-sprite';
-    img.className = 'd-inline';
+    img.className = 'd-block';
     list.append(img);
     img.src = data2.sprites.front_default;
     
@@ -95,14 +95,10 @@ async function listPokemon(index){
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    function playBtn(){
-        console.log();
-    }
     playButton.addEventListener('click', () => {
         document.querySelector("#body").style.overflowY = "scroll";
         document.querySelector('#startPage').style.display = "none";
     })
-
     
 
     let limit  = 50;
