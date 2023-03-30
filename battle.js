@@ -1,12 +1,13 @@
 import Pokemon from "./pokemon.js";
 
-let player1 = JSON.parse(window.localStorage.getItem("player1"))
-let player1_Party = {}
+let player1 = JSON.parse(window.localStorage.getItem("player1")),
+player1_Party = {},
 
-let player1_currentPokemon = null
-let initial = document.querySelector("#bottomPanel-initial")
-let movesArray = document.querySelector("#bottomPanel-moves")
-let deleteButton = document.querySelector("#delete")
+player1_currentPokemon = null,
+initial = document.querySelector("#bottomPanel-initial"),
+movesArray = document.querySelector("#bottomPanel-moves"),
+deleteButton = document.querySelector("#delete"),
+player1_currentMove = null
 
 const playerSprite = document.querySelector("#pokemonSprite")
 const bossSprite = document.querySelector("#BossSprite")
@@ -60,18 +61,25 @@ function battle(){
     attack.innerText = "Attack"
     initial.append(attack , runAway)
 
+    let playerColors = player1_currentPokemon.colors
+    //console.log(playerColors["normal"])
 
     player1_currentPokemon.moves.forEach(element => {
+        let moveType = Object.values(element)[0].type
+        let moveColor = playerColors[moveType]
         //const pokeAttack = document.createElement("div")
         //pokeAttack.setAttribute = ("id" , "pAttack")
-        //pokeAttack.style.backgroundColor = `rgb()`
-        //pokeAttack.style.borderColor = `rgb()`
+        //pokeAttack.style.color = `rgb(${moveColor[0]} , ${moveColor[1]} , ${moveColor[2]})`
+        //pokeAttack.style.borderColor = `rgb(${moveColor[0]} , ${moveColor[1]} , ${moveColor[2]})`
         //
+        //pokeAttack.addEventListener("mouseenter" , function(){
+            //player1_currentMove = element
+            //console.log(player1_currentMove)
+        //})
         //pokeAttack.addEventListener("click" , battleDamage)
-        //
 
-        
     });
+
 
     deleteButton.addEventListener("click" , function(){
         initial.style.display = "flex"
