@@ -8,13 +8,20 @@ initial = document.querySelector("#bottomPanel-initial"),
 movesArray = document.querySelector("#bottomPanel-moves"),
 deleteButton = document.querySelector("#delete"),
 player1_currentMove = null, 
-textBox = document.querySelector("#textBox")
+textBox = document.querySelector("#textBox"),
+player1_currentPokemon_maxHealth = Object.values(player1)[0].maxHP,
+player1_currentPokemon_percentHealth = player1_currentPokemon_maxHealth, 
+boss_maxHealth = 1500 , 
+boss_percentHealth = 1500, 
+player1_pokemonNames = Object.getOwnPropertyNames(player1),
+player1_pokemonName = `${player1_pokemonNames[0][0].toUpperCase()}${player1_pokemonNames[0].slice(1)}`, 
+weatherIcon = document.querySelector("#weatherIcon")
 
 
-
-const playerSprite = document.querySelector("#pokemonSprite")
-const bossSprite = document.querySelector("#BossSprite")
-const pokeHealthBar = document.querySelector("#playerHealthBar")
+const playerSprite = document.querySelector("#pokemonSprite"),
+bossSprite = document.querySelector("#BossSprite"),
+pokeHealthBar = document.querySelector("#playerHealthBar"),
+bossHealthBar = document.querySelector("#BossHealthBar")
 
 async function addPossibleMove(pokeName , element){
     const moveResponse = await fetch(element.move.url);
@@ -45,16 +52,34 @@ async function listPokemonParty(pokeName){
 }
 
 function battleDamage(){
+    textBox.innerHTML = ""
+    
+    //console.log(player1_currentMove)
+    
+    let battlePoints = player1_currentMove.power
+    if(boss_percentHealth - battlePoints >= 0){
+        textBox.innerHTML += `${player1_pokemonName} used ${player1_currentMove.name}!<br>` 
+        boss_percentHealth -= battlePoints*3
+    }else{
+        boss_percentHealth = 0
+        textBox.innerHTML = `${player1_pokemonName} has won!`
+    }
 
+    let bossPercent = (boss_percentHealth / boss_maxHealth) * 100
+    bossHealthBar.style.width = `${bossPercent}%`
+
+    
+
+    
 }
 
 function battle(){
 
-    textBox.innerText = `What will ${Object.getOwnPropertyNames(player1)[0][0].toUpperCase()}${Object.getOwnPropertyNames(player1)[0].slice(1)} do?`
-    let player1_pokemonNames = Object.getOwnPropertyNames(player1)
+    textBox.innerText = `What will ${player1_pokemonName} do?`
     player1_currentPokemon = player1_Party[player1_pokemonNames[0]]
     playerSprite.src = player1_currentPokemon.backSprite
     player1_currentPokemon.setMoves()
+     
     //console.log(player1_currentPokemon)
 
     const runAway = document.createElement("div")
@@ -67,30 +92,26 @@ function battle(){
     initial.append(attack , runAway)
 
     let playerColors = player1_currentPokemon.colors
-    //console.log(playerColors["normal"])
 
     player1_currentPokemon.moves.forEach(element => {
         let moveType = Object.values(element)[0].type
         let moveColor = playerColors[moveType]
-        // console.log(element)
-        // console.log(Object.keys(element)[0])
+
         const pokeAttack = document.createElement("div")
         pokeAttack.setAttribute("id" , "pAttack")
 
-        pokeAttack.style.color = `rgb(${moveColor[0]} , ${moveColor[1]} , ${moveColor[2]})`
-        pokeAttack.style.borderColor = `rgb(${moveColor[0]} , ${moveColor[1]} , ${moveColor[2]})`
+        pokeAttack.style.backgroundColor = `rgb(${moveColor[0]} , ${moveColor[1]} , ${moveColor[2]})`
         pokeAttack.innerText = `${Object.keys(element)[0][0].toUpperCase()}${Object.keys(element)[0].slice(1)}` 
-        //console.log(pokeAttack)
+
         pokeAttack.style.borderWidth = "20px"
         movesArray.append(pokeAttack)
 
-        //
-        //pokeAttack.addEventListener("mouseenter" , function(){
-            //player1_currentMove = element
-            //console.log(player1_currentMove)
-        //})
-        //pokeAttack.addEventListener("click" , battleDamage)
-        //
+        
+        pokeAttack.addEventListener("mouseenter" , function(){
+            player1_currentMove = Object.values(element)[0]
+        })
+
+        pokeAttack.addEventListener("click" , battleDamage)    
 
     });
 
@@ -134,7 +155,9 @@ window.addEventListener('DOMContentLoaded', ()=>{
         try{
             const response = await fetch(url);
             const data = await response.json();
+            weatherIcon.src = data.current.condition.icon
             console.log(data);
+            
         }
         catch(error){
             console.log(error)

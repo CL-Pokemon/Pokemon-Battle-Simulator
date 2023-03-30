@@ -65,7 +65,8 @@ async function listPokemon(index){
         hp.innerText = data2.stats[0].base_stat;
         attack.innerText = data2.stats[1].base_stat;
         defense.innerText = data2.stats[2].base_stat;
-        currPoke = data2.species.name       
+        currPoke = data2//.species.name     
+        //console.log(currPoke.species.name)  
     })
     pokemonList.push(pokeName)
     
@@ -125,15 +126,17 @@ class Player{
 
     addPokemon(name){
         if(Object.keys(this.#party).length < maxParty && currPoke != null){
-            this.#party[name] = {"fainted" : false}
+            let fill = name.stats[0].base_stat * 15
+            this.#party[name.species.name] = {"fainted" : false , maxHP : fill , atk : name.stats[1].base_stat , def : name.stats[2].base_stat}
+
         }else{
             alert("Error: Can't add this pokemon to party.")
         }
     }
 
     removePokemon(name){
-        if(this.#party.hasOwnProperty(name)){
-            delete this.#party[name]
+        if(this.#party.hasOwnProperty(name.species.name)){
+            delete this.#party[name.species.name]
         }else{
             alert("This pokemon isn't in the party")
         }
