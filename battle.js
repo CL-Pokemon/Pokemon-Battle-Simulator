@@ -4,6 +4,9 @@ let player1 = JSON.parse(window.localStorage.getItem("player1"))
 let player1_Party = {}
 
 let player1_currentPokemon = null
+let initial = document.querySelector("#bottomPanel-initial")
+let movesArray = document.querySelector("#bottomPanel-moves")
+let deleteButton = document.querySelector("#delete")
 
 const playerSprite = document.querySelector("#pokemonSprite")
 const bossSprite = document.querySelector("#BossSprite")
@@ -35,14 +38,56 @@ async function listPokemonParty(pokeName){
     }
     player1_Party[pokeName] = new Pokemon(pokeName , data2.stats[0].base_stat , data2.stats[1].base_stat , data2.stats[2].base_stat , data2.stats[5].base_stat , type , data2.sprites.back_default)
     data2.moves.forEach(element => addPossibleMove(pokeName , element))
-    player1_Party[pokeName].setMoves()
+}
+
+function battleDamage(){
+
 }
 
 function battle(){
     let player1_pokemonNames = Object.getOwnPropertyNames(player1)
     player1_currentPokemon = player1_Party[player1_pokemonNames[0]]
     playerSprite.src = player1_currentPokemon.backSprite
+    player1_currentPokemon.setMoves()
     console.log(player1_currentPokemon)
+
+    const runAway = document.createElement("div")
+    const attack = document.createElement("div")
+
+    runAway.setAttribute("id" , "b12")
+    attack.setAttribute("id" , "b12")
+    runAway.innerText = "Run Away"
+    attack.innerText = "Attack"
+    initial.append(attack , runAway)
+
+
+    player1_currentPokemon.moves.forEach(element => {
+        //const pokeAttack = document.createElement("div")
+        //pokeAttack.setAttribute = ("id" , "pAttack")
+        //pokeAttack.style.backgroundColor = `rgb()`
+        //pokeAttack.style.borderColor = `rgb()`
+        //
+        //element.addEventListener("click" , battleDamage)
+
+        
+    });
+
+    deleteButton.addEventListener("click" , function(){
+        initial.style.display = "flex"
+        movesArray.style.display = "none"
+    })
+
+    attack.addEventListener("click" , function(){
+        initial.style.display = "none"
+        movesArray.style.display = "block" // update later
+    })
+
+    runAway.addEventListener("click" , function(){
+        window.location.href = 'index.html';
+        localStorage.clear()
+    })
+
+
 }
 
 
@@ -78,7 +123,6 @@ window.addEventListener('DOMContentLoaded', ()=>{
             for(const pokemon in player1){
                 listPokemonParty(pokemon)
             }
-            
 
             setTimeout(battle , "500")
 
