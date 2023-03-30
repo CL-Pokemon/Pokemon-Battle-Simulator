@@ -1,5 +1,3 @@
-import Pokemon from "./pokemon.js";
-
 const listCards = document.querySelector('#list-cards'),
 pokeSprite = document.querySelector("#pokeSprite"),
 logoSprite = document.querySelector('#logo-sprite'),
@@ -23,23 +21,8 @@ playButton = document.querySelector('#playbtn')
 
 let currPoke = null,
     maxParty = 1, 
-    pokemonList = {}
-
-
-async function addPossibleMove(pokeName , element){
-    const moveResponse = await fetch(element.move.url);
-    const moveData = await moveResponse.json();
-    if((moveData.damage_class.name == "physical") && (moveData.power != null)){
-        let move = {}
-        move[moveData.name] = {}
-        move[moveData.name]["name"] = moveData.name
-        move[moveData.name]["power"] = moveData.power
-        move[moveData.name]["type"] = moveData.type.name
-        move[moveData.name]["pp"] = moveData.pp 
-        move[moveData.name]["accuracy"] = moveData.accuracy
-        pokemonList[pokeName].addPossibleMoves(move)     
-    }
-}
+    pokemonList = [],
+    limit = 50
 
 async function listPokemon(index){
     const url2 = `https://pokeapi.co/api/v2/pokemon/${index}/`;
@@ -84,13 +67,10 @@ async function listPokemon(index){
         hp.innerText = data2.stats[0].base_stat;
         attack.innerText = data2.stats[1].base_stat;
         defense.innerText = data2.stats[2].base_stat;
-        currPoke = data2.species.name
-        //console.log(currPoke)        
+        currPoke = data2//.species.name     
+        //console.log(currPoke.species.name)  
     })
-
-    pokemonList[pokeName] = new Pokemon(pokeName , data2.stats[0].base_stat , data2.stats[1].base_stat , data2.stats[2].base_stat , data2.stats[5].base_stat , {0 : null , 1 : null} , data2.sprites.back_default)
-    
-    data2.moves.forEach(element => addPossibleMove(pokeName , element));
+    pokemonList.push(pokeName)
     
 }
 
@@ -110,18 +90,18 @@ window.addEventListener('DOMContentLoaded', () => {
                 await listPokemon(index)
             }  
             console.log(pokemonList)
-            //console.log(Object.keys(pokemonList).length)
         }
         catch(error){
             console.log(error);     
         }
     }
 
-});
+}); 
 
 addButton.addEventListener("click" , () => {
     player1.addPokemon(currPoke)
     console.log(player1.party)
+    window.localStorage.setItem("player1" , JSON.stringify(player1.party))
 })
 
 deleteButton.addEventListener("click" , () => {
@@ -129,7 +109,13 @@ deleteButton.addEventListener("click" , () => {
     console.log(player1.party);
 })
 fightButton.addEventListener('click', ()=>{
-    player1.requirements();
+
+    if(Object.keys(pokemonList).length == limit){
+        player1.requirements();
+    }else{
+        alert("Please wait. Page hasnt finished loading")
+    }
+        
 })
 
 
@@ -149,7 +135,9 @@ class Player{
 
     addPokemon(name){
         if(Object.keys(this.#party).length < maxParty && currPoke != null){
-            this.#party[name] = {"fainted" : false}
+            let fill = name.stats[0].base_stat * 15
+            this.#party[name.species.name] = {"fainted" : false , maxHP : fill , atk : name.stats[1].base_stat , def : name.stats[2].base_stat}
+
         }else{
             alert("Error: Can't add this pokemon to party.")
             // document.getElementById('addPoptext').classList.toggle('show');
@@ -157,8 +145,8 @@ class Player{
     }
 
     removePokemon(name){
-        if(this.#party.hasOwnProperty(name)){
-            delete this.#party[name]
+        if(this.#party.hasOwnProperty(name.species.name)){
+            delete this.#party[name.species.name]
         }else{
             alert("This pokemon isn't in the party")
             // document.getElementById('removePoptext').classList.toggle('show');
@@ -166,6 +154,7 @@ class Player{
     }
     requirements(){
         if(Object.keys(this.#party).length === maxParty){
+
             window.location.href = 'battle.html';
         }else{
             alert("No pokemon in the party")

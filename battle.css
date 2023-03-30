@@ -1,0 +1,108 @@
+#BossSprite{
+    height: 120px;
+    position:absolute;
+    left:800px;
+    top: 200px;
+}
+
+#pokemonSprite{
+    height: 250px;
+    position:absolute;
+    left:250px;
+    top: 330px;
+}
+
+#playerHealthBar{
+    width: 100%;
+    transition: width 100ms;
+
+}
+
+#BossHealthBar{
+    width: 100%;
+    transition: width 100ms;
+}
+
+#textBox{
+    width: 1200px;
+    height: 200px;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 5px;
+    margin-top:-40px;
+    font-size: 30px;
+}
+
+#bottomPanel-initial{
+    background-color: black;
+    margin-top:5px;
+    width: 1200px;
+    height: 450px;
+    display:flex;
+    align-content:center;
+    justify-content: space-around;
+}
+
+#bottomPanel-moves{
+    background-color: black;
+    margin-top:5px;
+    width: 1200px;
+    height: 450px;
+    display: none;
+    padding-top: 50px;
+    padding-left : 50px;
+    grid-template: 50% 50% / 50% 50%;
+    
+}
+
+#b12{
+    width : 400px;
+    height : 200px;
+    background-color: beige;
+    align-self: center;
+    border-radius:10px;
+    text-align: center;
+    font-size:50px;
+    padding-top: 60px;
+}
+
+#delete{
+    background-color: red;
+    position:absolute;
+    width: 80px;
+    height: 80px;
+    top: 800px;
+    border-radius: 5px;
+    border-width: 5px;
+    left: 1100px;
+    cursor:pointer;
+    padding-top: 18px;
+
+}
+
+#b12:hover{
+    cursor:pointer
+}
+
+#pAttack{
+    background-color: white;
+    width : 350px;
+    height: 175px;
+    font-size: 40px;
+    padding-top: 55px;
+    border-radius: 10px;
+    text-align: center;
+    color:white;
+    cursor:pointer;
+}
+
+#returnIcon{
+    width: 100%
+}
+
+#weatherIcon{
+    position:absolute;
+    width: 80px;
+    left: 1100px;
+    top: 30px;
+}
