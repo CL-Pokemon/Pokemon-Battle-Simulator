@@ -16,7 +16,8 @@ defense = document.querySelector('#resultDefense'),
 
 addButton = document.querySelector("#addToParty"),
 deleteButton = document.querySelector("#deleteFromParty"),
-fightButton = document.querySelector('#fightingScene')
+fightButton = document.querySelector('#fightingScene'),
+playButton = document.querySelector('#playbtn')
 
 
 
@@ -94,6 +95,16 @@ async function listPokemon(index){
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+    function playBtn(){
+        console.log();
+    }
+    playButton.addEventListener('click', () => {
+        document.querySelector("#body").style.overflowY = "scroll";
+        document.querySelector('#startPage').style.display = "none";
+    })
+
+    
+
     let limit  = 50;
     fetchPokeAPI();
 

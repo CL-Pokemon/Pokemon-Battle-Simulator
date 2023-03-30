@@ -3,6 +3,32 @@
 }
 body{
     background-color: #2a9d8f;
+    /* when play gets clicked  */
+    overflow-y:hidden;
+}
+#startPage{
+    display: show;
+    font-size: 50px;
+    flex-direction: column;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(128,128,128,0.7);
+    background-image: url(ezgif.com-resize.gif);
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    z-index: 1;
+    color: aliceblue;
+}
+#containerStartPage{
+    position: relative;
+    top:50%;
+    bottom:50%;
 }
 #card{
     margin-bottom: 10px;
@@ -37,12 +63,14 @@ body{
 }
 #pokeStats-top{
     background-color: #e76f51;
-    border-radius: 1cm;
+    border-radius: 1ch;
 }
 #pokeStats-bot{
     background-color: grey;
-    border-radius: 1cm;
+    border-radius: 1ch;
 }
 #addToParty, #deleteFromParty, #fightingScene{
-    border-radius: 1cm;
+    border-radius: 1ch;
+    position: relative;
+    text-align: center;
 }

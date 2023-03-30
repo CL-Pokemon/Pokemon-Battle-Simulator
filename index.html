@@ -9,7 +9,16 @@
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" href="index.css" />
 </head>
-<body>
+<body id = "body">
+
+    <!-- Menu -->
+    <div id = "startPage" style="display: show;">
+        <div id = "containerStartPage">
+            <h1>Pokemon Battle Simulator</h1>
+            <button class = "btn btn-light" id="playbtn">PLAY</button>
+        </div>
+    </div>
+
     <div class="starter row align-items-start">
         <div class='overflow-auto col-6 col-sm-3' id='list-cards'>
             <!-- <div id = 'card'>
@@ -63,8 +72,8 @@
                         </div>
                     </div>
                     <div class = 'row'>
-                        <button class = 'col-6 btn btn-success' id = "addToParty">Add</button>
-                        <button class = 'col-6 btn btn-danger' id = "deleteFromParty">Remove</button>
+                        <button class = 'col-4 offset-2 btn btn-success' id = "addToParty">Add</button>
+                        <button class = 'col-4 btn btn-danger' id = "deleteFromParty">Remove</button>
                     </div>
                     <div class = 'row'>
                         <button class = 'col-6 offset-3 btn btn-primary' id = "fightingScene">Fight</button>
