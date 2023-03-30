@@ -10,7 +10,7 @@ deleteButton = document.querySelector("#delete"),
 player1_currentMove = null, 
 textBox = document.querySelector("#textBox")
 
-textBox.innerText = `What will ${Object.getOwnPropertyNames(player1)[0]} do?`
+
 
 const playerSprite = document.querySelector("#pokemonSprite")
 const bossSprite = document.querySelector("#BossSprite")
@@ -50,11 +50,12 @@ function battleDamage(){
 
 function battle(){
 
+    textBox.innerText = `What will ${Object.getOwnPropertyNames(player1)[0][0].toUpperCase()}${Object.getOwnPropertyNames(player1)[0].slice(1)} do?`
     let player1_pokemonNames = Object.getOwnPropertyNames(player1)
     player1_currentPokemon = player1_Party[player1_pokemonNames[0]]
     playerSprite.src = player1_currentPokemon.backSprite
     player1_currentPokemon.setMoves()
-    console.log(player1_currentPokemon)
+    //console.log(player1_currentPokemon)
 
     const runAway = document.createElement("div")
     const attack = document.createElement("div")
@@ -71,16 +72,25 @@ function battle(){
     player1_currentPokemon.moves.forEach(element => {
         let moveType = Object.values(element)[0].type
         let moveColor = playerColors[moveType]
-        //const pokeAttack = document.createElement("div")
-        //pokeAttack.setAttribute = ("id" , "pAttack")
-        //pokeAttack.style.color = `rgb(${moveColor[0]} , ${moveColor[1]} , ${moveColor[2]})`
-        //pokeAttack.style.borderColor = `rgb(${moveColor[0]} , ${moveColor[1]} , ${moveColor[2]})`
+        // console.log(element)
+        // console.log(Object.keys(element)[0])
+        const pokeAttack = document.createElement("div")
+        pokeAttack.setAttribute("id" , "pAttack")
+
+        pokeAttack.style.color = `rgb(${moveColor[0]} , ${moveColor[1]} , ${moveColor[2]})`
+        pokeAttack.style.borderColor = `rgb(${moveColor[0]} , ${moveColor[1]} , ${moveColor[2]})`
+        pokeAttack.innerText = `${Object.keys(element)[0][0].toUpperCase()}${Object.keys(element)[0].slice(1)}` 
+        //console.log(pokeAttack)
+        pokeAttack.style.borderWidth = "20px"
+        movesArray.append(pokeAttack)
+
         //
         //pokeAttack.addEventListener("mouseenter" , function(){
             //player1_currentMove = element
             //console.log(player1_currentMove)
         //})
         //pokeAttack.addEventListener("click" , battleDamage)
+        //
 
     });
 
@@ -137,7 +147,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
                 listPokemonParty(pokemon)
             }
 
-            setTimeout(battle , "500")
+            setTimeout(battle , "1500")
 
             console.log(player1)
             console.log(player1_Party)            
