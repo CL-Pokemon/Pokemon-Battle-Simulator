@@ -15,7 +15,8 @@ defense = document.querySelector('#resultDefense'),
 addButton = document.querySelector("#addToParty"),
 deleteButton = document.querySelector("#deleteFromParty"),
 fightButton = document.querySelector('#fightingScene'),
-playButton = document.querySelector('#playbtn')
+playButton = document.querySelector('#playbtn'),
+firstImgList = document.querySelector('#firstQueue')
 
 
 
@@ -99,7 +100,7 @@ window.addEventListener('DOMContentLoaded', () => {
 }); 
 
 addButton.addEventListener("click" , () => {
-    player1.addPokemon(currPoke)
+    player1.addPokemon(currPoke);
     console.log(player1.party)
     window.localStorage.setItem("player1" , JSON.stringify(player1.party))
 })
@@ -137,7 +138,7 @@ class Player{
         if(Object.keys(this.#party).length < maxParty && currPoke != null){
             let fill = name.stats[0].base_stat * 15
             this.#party[name.species.name] = {"fainted" : false , maxHP : fill , atk : name.stats[1].base_stat , def : name.stats[2].base_stat}
-
+            firstImgList.src = currPoke.sprites.front_default;
         }else{
             alert("Error: Can't add this pokemon to party.")
             // document.getElementById('addPoptext').classList.toggle('show');
@@ -147,6 +148,7 @@ class Player{
     removePokemon(name){
         if(this.#party.hasOwnProperty(name.species.name)){
             delete this.#party[name.species.name]
+            firstImgList.src = '';
         }else{
             alert("This pokemon isn't in the party")
             // document.getElementById('removePoptext').classList.toggle('show');
@@ -154,7 +156,6 @@ class Player{
     }
     requirements(){
         if(Object.keys(this.#party).length === maxParty){
-
             window.location.href = 'battle.html';
         }else{
             alert("No pokemon in the party")
