@@ -88,9 +88,6 @@ body{
     }
 }
 @media screen and (max-width:575px) {
-    div#footer{
-        /* margin-top: 38%; */
-    }
     img#pokeSprite{
         display: none;
     }
