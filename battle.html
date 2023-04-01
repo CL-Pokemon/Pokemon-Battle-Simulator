@@ -14,13 +14,17 @@
     <div style= "position:relative;">
         <div style="background-color: antiquewhite; width: 275px; height: 50px; position:absolute;top:75px; left:100px;border:4px black solid; padding:6px;" >
         <h1 style = 'font-size: 16px; margin-bottom: 3px;font-family:"Press Start 2P", cursive;'>BOSS</h1>
-        <div style = "height: 5px; background-color: #ccc; position: absolute;"></div>
-        <div id="BossHealthBar" style = 'height: 5px; background-color: green;'></div>
+            <div style = "position: relative;">
+                <div style = "height: 5px; background-color: #D3D3D3;position: relative;"></div>
+                <div id="BossHealthBar" style = 'height: 5px; background-color: green; position: absolute; top:0; left: 0;right: 0;'></div>
+            </div>
         </div>
         <div style="background-color: antiquewhite; width: 275px; height: 50px; position:absolute;top:450px; left:700px;border:4px black solid; padding:6px;" >
             <h1 style = 'font-size: 16px; margin-bottom: 3px;font-family:"Press Start 2P", cursive;'>PLAYER</h1>
-            <div style = "height: 5px; background-color: #ccc; position: absolute;"></div>
-            <div id="playerHealthBar" style = 'height: 5px; background-color: green;'></div>
+            <div style = "position: relative;">
+                <div style = "height: 5px; background-color: #D3D3D3;"></div>
+                <div id="playerHealthBar" style = 'height: 5px; background-color: green; position: absolute;top: 0;left: 0;right: 0;'></div>
+            </div>
         </div>
         <img id = "BossSprite" src = "https://www.pokencyclopedia.info/sprites/misc/spr_substitute/art__substitute.png">
         <img id = "pokemonSprite">
