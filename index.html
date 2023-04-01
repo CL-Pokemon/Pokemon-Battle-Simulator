@@ -22,7 +22,7 @@
         </div>
 
         <div class="starter row align-items-start">
-            <div class='col-6 col-sm-3' id='list-cards'>
+            <div class='col-6 col-sm-5' id='list-cards'>
                 <!-- <div id = 'card'>
                 <img class = 'd-inline' id = 'poke-sprite'/>
                 <p class = 'd-inline' id = 'idPoke'># of Pokemon</p>
@@ -50,29 +50,29 @@
                     </div>
                     <div id='pokeStats-top'>
                         <div class='row align-items-center text-center'>
-                            <div class='col-md-5 col-sm-5' id='typeState'>Type</div>
+                            <div class='col-md-5 col-sm-5' id='typeState'><h3>Type</h3></div>
                             <div class='col-md-7 col-sm-7' id='resultType'>5</div>
                         </div>
                         <div class='row align-items-center text-center'>
-                            <div class='col-md-5 col-sm-5' id='heightStat'>Height</div>
+                            <div class='col-md-5 col-sm-5' id='heightStat'><h3>Height</h3></div>
                             <div class='col-md-7 col-sm-7' id='resultHeight'>5</div>
                         </div>
                         <div class='row align-items-center text-center'>
-                            <div class='col-md-5 col-sm-5' id='weightStat'>Weight</div>
+                            <div class='col-md-5 col-sm-5' id='weightStat'><h3>Weight</h3></div>
                             <div class='col-md-7 col-sm-7' id='resultWeight'>5</div>
                         </div>
                     </div>
                     <div id="pokeStats-bot">
                         <div class='row align-items-center text-center'>
-                            <div class='col-md-5 col-sm-5' id='hpStat'>Hp</div>
+                            <div class='col-md-5 col-sm-5' id='hpStat'><h3>Hp</h3></div>
                             <div class='col-md-7 col-sm-7' id='resultHp'>59</div>
                         </div>
                         <div class='row align-items-center text-center'>
-                            <div class='col-md-5 col-sm-5' id='attackStat'>Attack</div>
+                            <div class='col-md-5 col-sm-5' id='attackStat'><h3>Attack</h3></div>
                             <div class='col-md-7 col-sm-7' id='resultAttack'>59</div>
                         </div>
                         <div class='row align-items-center text-center'>
-                            <div class='col-md-5 col-sm-5' id='defenseStat'>Defense</div>
+                            <div class='col-md-5 col-sm-5' id='defenseStat'><h3>Defense</h3></div>
                             <div class='col-md-7 col-sm-7' id='resultDefense'>59</div>
                         </div>
                     </div>
@@ -84,17 +84,16 @@
                         <button class='col-6 offset-3 btn btn-primary' id="fightingScene">Fight</button>
                     </div>
                 </div>
-                <div id = "footer" style = "background-color: blue;height: 100px; position: initial;margin-top: 25%;color:azure">
-                    <h3>Pokemon List</h3>
-                    <div class = "row">
-                        <img class = 'col-3' id = "firstQueue">
-                        </img>
+                <div id = "footer" style = "background-color: #2a9d8f; position: initial;color:azure">
+                    <h3 id = "queueList">Pokemon List</h3>
+                    <div class = "row p-2" style="justify-content: center;" id = "rowQueue">
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script src="index.js" type="module"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 
 </html>

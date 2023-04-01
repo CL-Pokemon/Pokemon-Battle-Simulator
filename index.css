@@ -38,7 +38,9 @@ body{
     cursor: pointer;
 }
 #list-cards{
-    /* width:50%; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .starter{
     display: flex;
@@ -46,7 +48,6 @@ body{
 #container{
     border-radius: 10ch;
     background-color: #e9c46a;
-    position: relative;
     top:8%;
 }
 #aside{
@@ -73,11 +74,44 @@ body{
     position: relative;
     text-align: center;
 }
-@media screen and (max-width:575px) {
-    img#pokeBall-logo.col-sm-2{
+#footer{
+    text-align: center;
+    margin: 10%;
+    border-radius: 1cm;
+}
+.swal-overlay{
+    background-color:rgba(38, 70, 83,0.45);
+}
+@media screen and (max-width:860px) {
+    h3#idNum, img#pokeBall-logo.col-sm-2{
         display: none;
     }
+}
+@media screen and (max-width:575px) {
     div#footer{
-        margin-top: 38%;
+        /* margin-top: 38%; */
+    }
+    img#pokeSprite{
+        display: none;
+    }
+    img#firstQueue{
+        height: 20vw;
+    }
+}
+@media screen and (max-width:414px){
+    div#card{
+        display: inline-block !important;
+    }
+    h5#idPoke, h5#pokeName{
+        font-size: 12px;
+        text-align: center;
+    }
+    img#poke-sprite{
+        margin-left:0px;
+        align-items: center;
+        justify-content: center;
+    }
+    h3#queueList{
+        font-size: 12px;
     }
 }

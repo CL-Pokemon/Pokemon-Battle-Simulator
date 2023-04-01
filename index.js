@@ -16,14 +16,15 @@ addButton = document.querySelector("#addToParty"),
 deleteButton = document.querySelector("#deleteFromParty"),
 fightButton = document.querySelector('#fightingScene'),
 playButton = document.querySelector('#playbtn'),
-firstImgList = document.querySelector('#firstQueue')
+rowQueue = document.querySelector('#rowQueue')
 
 
 
 let currPoke = null,
     maxParty = 1, 
     pokemonList = [],
-    limit = 50
+    limit = 50,
+    imgEle
 
 async function listPokemon(index){
     const url2 = `https://pokeapi.co/api/v2/pokemon/${index}/`;
@@ -42,13 +43,13 @@ async function listPokemon(index){
     list.append(img);
     img.src = data2.sprites.front_default;
     
-    let numPoke = document.createElement('p');
+    let numPoke = document.createElement('h5');
     numPoke.id = 'idPoke';
     numPoke.className = 'm-2';
     list.append(numPoke);
     numPoke.innerText = `No. ${index}`;
 
-    let name = document.createElement('p');
+    let name = document.createElement('h5');
     name.id = 'pokeName';
     name.className = 'm-2';
     list.append(name);
@@ -57,17 +58,17 @@ async function listPokemon(index){
     list.addEventListener("mouseenter" , function(){
         pokeSprite.src = data2.sprites.front_default;
         logoSprite.src = data2.sprites.front_default;
-        numberPoke.innerText = numPoke.innerText;
-        namePoke.innerText = name.innerText;
+        numberPoke.innerHTML = `<h3 id = "idNum">${numPoke.innerText}</h3>`;
+        namePoke.innerHTML = `<h3>${name.innerText}</h3>`;
         let listType = data2.types.map(ele => {
             return ele.type.name[0].toUpperCase() + ele.type.name.slice(1);
         });
-        type.innerText = listType.join(' ');
-        height.innerText = `${data2.height} Cm`;
-        weight.innerText = `${data2.weight} Lbs`
-        hp.innerText = data2.stats[0].base_stat;
-        attack.innerText = data2.stats[1].base_stat;
-        defense.innerText = data2.stats[2].base_stat;
+        type.innerHTML = `<h3>${listType.join(' ')}</h3>`;
+        height.innerHTML = `<h3>${data2.height} Cm</h3>`;
+        weight.innerHTML = `<h3>${data2.weight} Lbs</h3>`;
+        hp.innerHTML = `<h3>${data2.stats[0].base_stat}</h3>`;
+        attack.innerHTML = `<h3>${data2.stats[1].base_stat}</h3>`;
+        defense.innerHTML = `<h3>${data2.stats[2].base_stat}</h3>`;
         currPoke = data2//.species.name     
         //console.log(currPoke.species.name)  
     })
@@ -114,7 +115,11 @@ fightButton.addEventListener('click', ()=>{
     if(Object.keys(pokemonList).length == limit){
         player1.requirements();
     }else{
-        alert("Please wait. Page hasnt finished loading")
+        swal("Please wait. Page hasn't finished loading",{
+            buttons: false,
+            timer: 3000,
+        });
+        // alert("Please wait. Page hasnt finished loading")
     }
         
 })
@@ -138,30 +143,48 @@ class Player{
         if(Object.keys(this.#party).length < maxParty && currPoke != null){
             let fill = name.stats[0].base_stat * 15
             this.#party[name.species.name] = {"fainted" : false , maxHP : fill , atk : name.stats[1].base_stat , def : name.stats[2].base_stat}
-            firstImgList.src = currPoke.sprites.front_default;
+            imgEle = document.createElement('img');
+            imgEle.id = "firstQueue";
+            imgEle.className = 'col-sm-3';
+            imgEle.style.backgroundColor = "#e9c46a";
+            imgEle.style.borderRadius = "50%";
+            rowQueue.append(imgEle);
+            imgEle.src = currPoke.sprites.front_default;
         }else{
-            alert("Error: Can't add this pokemon to party.")
-            // document.getElementById('addPoptext').classList.toggle('show');
+            swal({
+                title:"Error",
+                text: "Can't add this pokemon to party",
+                icon: 'warning',
+                button: 'Understood',
+            });
         }
     }
 
     removePokemon(name){
         if(this.#party.hasOwnProperty(name.species.name)){
             delete this.#party[name.species.name]
-            firstImgList.src = '';
+            rowQueue.removeChild(imgEle);
         }else{
-            alert("This pokemon isn't in the party")
-            // document.getElementById('removePoptext').classList.toggle('show');
+            swal({
+                title:"Error",
+                text: "This pokemon isn't in the party",
+                icon: 'warning',
+                button: 'Understood'
+            });
         }
     }
     requirements(){
         if(Object.keys(this.#party).length === maxParty){
             window.location.href = 'battle.html';
         }else{
-            alert("No pokemon in the party")
-            // document.getElementById('fightPoptext').classList.toggle('show');
+            swal({
+                title:"Error",
+                text: ":No pokemon in the party",
+                icon: 'warning',
+                button: 'Understood'
+            });
         }  
     }
 }
 
-let player1 = new Player()
+let player1 = new Player();
