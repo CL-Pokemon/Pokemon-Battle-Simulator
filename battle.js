@@ -15,7 +15,8 @@ boss_maxHealth = 1500 ,
 boss_percentHealth = 1500, 
 player1_pokemonNames = Object.getOwnPropertyNames(player1),
 player1_pokemonName = `${player1_pokemonNames[0][0].toUpperCase()}${player1_pokemonNames[0].slice(1)}`, 
-weatherIcon = document.querySelector("#weatherIcon")
+weatherIcon = document.querySelector("#weatherIcon"), 
+weatherTemp = null
 
 
 const playerSprite = document.querySelector("#pokemonSprite"),
@@ -54,13 +55,34 @@ async function listPokemonParty(pokeName){
 
 function battleDamage(){
     textBox.innerHTML = ""
-    
-    //console.log(player1_currentMove)
+    let pButtons = document.querySelectorAll("#pAttack")
+    for(let i = 0; i < pButtons.length ; i++){
+        pButtons[i].disabled = true
+    }
+    setTimeout(() =>{
+        for(let i = 0; i < pButtons.length ; i++){
+         pButtons[i].disabled = false
+       }
+    } , "2000")
     
     let battlePoints = player1_currentMove.power
     if(boss_percentHealth - battlePoints >= 0){
         textBox.innerHTML += `${player1_pokemonName} used ${player1_currentMove.name}!<br>` 
-        boss_percentHealth -= battlePoints*3;
+        if(weatherTemp >= 75){
+            if(player1_currentMove.type == "fire"){
+                boss_percentHealth -= battlePoints*3.5
+            }else if(player1_currentMove.type == "ice"){
+                boss_percentHealth -= battlePoints*2.5
+            }
+        }else if(weatherTemp <= 32){
+            if(player1_currentMove.type == "fire"){
+                boss_percentHealth -= battlePoints*2.5
+            }else if(player1_currentMove.type == "ice"){
+                boss_percentHealth -= battlePoints*3.5
+            }
+        }else{
+            boss_percentHealth -= battlePoints*3
+        }
         const tl = gsap.timeline()
         tl.to(playerSprite, {
             x:-20
@@ -107,34 +129,34 @@ function battle(){
     player1_currentPokemon = player1_Party[player1_pokemonNames[0]]
     playerSprite.src = player1_currentPokemon.backSprite
     player1_currentPokemon.setMoves()
-     
+    
     console.log(player1_currentPokemon)
-
+    
     const runAway = document.createElement("div")
     const attack = document.createElement("div")
-
+    
     runAway.setAttribute("id" , "b12")
     attack.setAttribute("id" , "b12")
     runAway.innerText = "Run Away"
     attack.innerText = "Attack"
     initial.append(attack , runAway)
-
+    
     let playerColors = player1_currentPokemon.colors
-
+    
     player1_currentPokemon.moves.forEach(element => {
         let moveType = Object.values(element)[0].type
         let moveColor = playerColors[moveType]
-
-        const pokeAttack = document.createElement("div");
+        
+        const pokeAttack = document.createElement("button");
         pokeAttack.setAttribute("id" , "pAttack");
-
-        pokeAttack.style.backgroundColor = `rgb(${moveColor[0]} , ${moveColor[1]} , ${moveColor[2]})`
+        
+        pokeAttack.style.borderColor = `rgb(${moveColor[0]} , ${moveColor[1]} , ${moveColor[2]})`
+        pokeAttack.style.color = `rgb(${moveColor[0]} , ${moveColor[1]} , ${moveColor[2]})`
         pokeAttack.innerText = `${Object.keys(element)[0][0].toUpperCase()}${Object.keys(element)[0].slice(1)}` 
-
+        
         pokeAttack.style.borderWidth = "20px";
         movesArray.append(pokeAttack)
-
-        
+                
         pokeAttack.addEventListener("mouseenter" , function(){
             player1_currentMove = Object.values(element)[0]
         })
@@ -184,6 +206,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
             const response = await fetch(url);
             const data = await response.json();
             weatherIcon.src = data.current.condition.icon
+            weatherTemp = data.current.temp_f
             console.log(data);
         }
         catch(error){

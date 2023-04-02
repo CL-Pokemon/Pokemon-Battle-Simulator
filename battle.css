@@ -89,11 +89,10 @@
     width : 350px;
     height: 175px;
     font-size: 40px;
-    padding-top: 55px;
     border-radius: 10px;
     text-align: center;
-    color:white;
     cursor:pointer;
+    font-weight: bold;
 }
 
 #returnIcon{
