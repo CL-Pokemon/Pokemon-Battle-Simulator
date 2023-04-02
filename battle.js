@@ -16,13 +16,15 @@ boss_percentHealth = 1500,
 player1_pokemonNames = Object.getOwnPropertyNames(player1),
 player1_pokemonName = `${player1_pokemonNames[0][0].toUpperCase()}${player1_pokemonNames[0].slice(1)}`, 
 weatherIcon = document.querySelector("#weatherIcon"), 
-weatherTemp = null
+weatherTemp = null, 
+battleEnd = false
 
 
 const playerSprite = document.querySelector("#pokemonSprite"),
 bossSprite = document.querySelector("#BossSprite"),
 pokeHealthBar = document.querySelector("#playerHealthBar"),
-bossHealthBar = document.querySelector("#BossHealthBar")
+bossHealthBar = document.querySelector("#BossHealthBar"), 
+bossMoves = [{name : "psychic" , power : 90 , type : "psychic"} , {name : "future sight" , power : 120 , type : "psychic"} , {name : "ancient power" , power : 60 , type : "rock"} , {name : "aura sphere" , power : 80 , type : "fighting"}]
 
 
 async function addPossibleMove(pokeName , element){
@@ -60,10 +62,32 @@ function battleDamage(){
         pButtons[i].disabled = true
     }
     setTimeout(() =>{
-        for(let i = 0; i < pButtons.length ; i++){
-         pButtons[i].disabled = false
-       }
-    } , "2000")
+        let index = Math.floor(Math.random() * 4),
+        bossAttack = bossMoves[index],
+        bossBattlePoints = bossAttack.power
+        if(player1_currentPokemon_maxHealth - bossBattlePoints >= 0 && battleEnd == false){
+            textBox.innerHTML = `Mewtwo used ${bossAttack.name}!<br>`
+            player1_currentPokemon_percentHealth -= bossBattlePoints * 3
+            
+        }else{
+            player1_currentPokemon_percentHealth = 0
+            textBox.innerHTML = "Mewtwo has won!"
+            for(let i = 0; i < pButtons.length ; i++){
+                pButtons[i].disabled = true
+            }
+            battleEnd = true
+        }
+        let pokePercent = (player1_currentPokemon_percentHealth / player1_currentPokemon_maxHealth) * 100 
+        pokeHealthBar.style.width = `${pokePercent}%`
+
+    } , "3000")
+    setTimeout(() =>{
+        if(!battleEnd){
+            for(let i = 0; i < pButtons.length ; i++){
+                pButtons[i].disabled = false
+            }
+        }
+    } , "6000")
     
     let battlePoints = player1_currentMove.power
     if(boss_percentHealth - battlePoints >= 0){
@@ -113,6 +137,10 @@ function battleDamage(){
     }else{
         boss_percentHealth = 0
         textBox.innerHTML = `${player1_pokemonName} has won!`
+        for(let i = 0; i < pButtons.length ; i++){
+            pButtons[i].disabled = true
+        }
+        battleEnd = true
     }
 
     let bossPercent = (boss_percentHealth / boss_maxHealth) * 100
