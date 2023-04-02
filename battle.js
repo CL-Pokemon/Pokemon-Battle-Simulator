@@ -69,14 +69,14 @@ function battleDamage(){
             textBox.innerHTML = `Mewtwo used ${bossAttack.name}!<br>` 
             const tl2 = gsap.timeline()
             tl2.to(bossSprite, {
-                x:-20
+                x:20
             })
                 .to(bossSprite,{
-                    x:20,
+                    x:-20,
                     duration:0.1,
                     onComplete(){
                         gsap.to(bossSprite,{
-                            x:30,
+                            x:-10,
                             yoyo:true,
                             repeat:5,
                             duration:0.08
