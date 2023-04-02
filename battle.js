@@ -57,44 +57,62 @@ async function listPokemonParty(pokeName){
 
 function battleDamage(){
     textBox.innerHTML = ""
+    let multiplier = null
     let pButtons = document.querySelectorAll("#pAttack")
     for(let i = 0; i < pButtons.length ; i++){    
         pButtons[i].disabled = true
     }
+    if(weatherTemp >= 75){
+        if(player1_currentMove.type == "fire"){
+            multiplier = 3.5
+        }else if(player1_currentMove.type == "ice"){
+            multiplier = 2.5
+        }
+    }else if(weatherTemp <= 32){
+        if(player1_currentMove.type == "fire"){
+            multiplier = 2.5
+        }else if(player1_currentMove.type == "ice"){
+            multiplier = 3.5
+        }
+    }else{
+        multiplier = 3
+    }
     setTimeout(() =>{
         let index = Math.floor(Math.random() * 4),
         bossAttack = bossMoves[index],
-        bossBattlePoints = bossAttack.power
-        if(player1_currentPokemon_maxHealth - bossBattlePoints >= 0 && battleEnd == false){
-            textBox.innerHTML = `Mewtwo used ${bossAttack.name}!<br>` 
-            const tl2 = gsap.timeline()
-            tl2.to(bossSprite, {
-                x:20
-            })
-                .to(bossSprite,{
-                    x:-20,
-                    duration:0.1,
-                    onComplete(){
-                        gsap.to(bossSprite,{
-                            x:-10,
-                            yoyo:true,
-                            repeat:5,
-                            duration:0.08
-                        })
+        bossBattlePoints = bossAttack.power * 2.5
+        
+        if(player1_currentPokemon_percentHealth - bossBattlePoints >= 0){
+            if(battleEnd == false){
+                textBox.innerHTML = `Mewtwo used ${bossAttack.name}!<br>` 
+                const tl2 = gsap.timeline()
+                tl2.to(bossSprite, {
+                    x:20
+                })
+                    .to(bossSprite,{
+                        x:-20,
+                        duration:0.1,
+                        onComplete(){
+                            gsap.to(bossSprite,{
+                                x:-10,
+                                yoyo:true,
+                                repeat:5,
+                                duration:0.08
+                            })
 
-                        gsap.to(playerSprite,{
-                            opacity:0,
-                            repeat:5,
-                            yoyo:true,
-                            duration:0.08,
-                        })
-                    }
-                })
-                .to(bossSprite,{
-                    x:0
-                })
-            player1_currentPokemon_percentHealth -= bossBattlePoints * 3
-            
+                            gsap.to(playerSprite,{
+                                opacity:0,
+                                repeat:5,
+                                yoyo:true,
+                                duration:0.08,
+                            })
+                        }
+                    })
+                    .to(bossSprite,{
+                        x:0
+                    })
+                player1_currentPokemon_percentHealth -= bossBattlePoints
+            }
         }else{
             player1_currentPokemon_percentHealth = 0
             textBox.innerHTML = "Mewtwo has won!"
@@ -116,23 +134,9 @@ function battleDamage(){
     } , "6000")
     
     let battlePoints = player1_currentMove.power
-    if(boss_percentHealth - battlePoints >= 0){
+    if(boss_percentHealth - (battlePoints * multiplier) >= 0){
         textBox.innerHTML += `${player1_pokemonName} used ${player1_currentMove.name}!<br>` 
-        if(weatherTemp >= 75){
-            if(player1_currentMove.type == "fire"){
-                boss_percentHealth -= battlePoints*3.5
-            }else if(player1_currentMove.type == "ice"){
-                boss_percentHealth -= battlePoints*2.5
-            }
-        }else if(weatherTemp <= 32){
-            if(player1_currentMove.type == "fire"){
-                boss_percentHealth -= battlePoints*2.5
-            }else if(player1_currentMove.type == "ice"){
-                boss_percentHealth -= battlePoints*3.5
-            }
-        }else{
-            boss_percentHealth -= battlePoints*3
-        }
+        boss_percentHealth -= battlePoints * multiplier
         const tl = gsap.timeline()
         tl.to(playerSprite, {
             x:-20
@@ -159,7 +163,7 @@ function battleDamage(){
             .to(playerSprite,{
                 x:0
             })
-            
+        
     }else{
         boss_percentHealth = 0
         textBox.innerHTML = `${player1_pokemonName} has won!`
@@ -168,7 +172,6 @@ function battleDamage(){
         }
         battleEnd = true
     }
-
     let bossPercent = (boss_percentHealth / boss_maxHealth) * 100
     bossHealthBar.style.width = `${bossPercent}%`
 
@@ -227,7 +230,7 @@ function battle(){
 
     attack.addEventListener("click" , function(){
         initial.style.display = "none"
-        movesArray.style.display = "grid" // update later
+        movesArray.style.display = "grid" 
     })
 
     runAway.addEventListener("click" , function(){
@@ -247,8 +250,6 @@ window.addEventListener('DOMContentLoaded', ()=>{
 
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(position =>{
-            //console.log('My General Position:', position);
-            //console.log(lat, long);
             const long = position.coords.longitude;
             const lat = position.coords.latitude;
 
@@ -274,10 +275,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
                 listPokemonParty(pokemon)
             }
 
-            setTimeout(battle , "1500")
-
-            console.log(player1)
-            console.log(player1_Party)            
+            setTimeout(battle , "1500")          
 
         }
         catch{
