@@ -139,6 +139,11 @@ function battleDamage(){
     let battlePoints = player1_currentMove.power
     if(boss_percentHealth - (battlePoints * multiplier) >= 0){
         textBox.innerHTML += `${player1_pokemonName} used ${player1_currentMove.name}!<br>` 
+        if(multiplier == 3.5){
+            textBox.innerHTML += `It was very effective!`
+        }else if(multiplier == 2.5){
+            textBox.innerHTML += `It wasn't very effective!`
+        }
         boss_percentHealth -= battlePoints * multiplier
         const tl = gsap.timeline()
         tl.to(playerSprite, {
