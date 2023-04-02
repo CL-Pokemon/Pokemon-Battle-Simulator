@@ -61,6 +61,7 @@ function battleDamage(){
     let pButtons = document.querySelectorAll("#pAttack")
     for(let i = 0; i < pButtons.length ; i++){    
         pButtons[i].disabled = true
+        pButtons[i].style.opacity = "0.5"
     }
     if(weatherTemp >= 75){
         if(player1_currentMove.type == "fire"){
@@ -118,6 +119,7 @@ function battleDamage(){
             textBox.innerHTML = "Mewtwo has won!"
             for(let i = 0; i < pButtons.length ; i++){
                 pButtons[i].disabled = true
+                pButtons[i].style.opacity = "0.5"
             }
             battleEnd = true
         }
@@ -129,6 +131,7 @@ function battleDamage(){
         if(!battleEnd){
             for(let i = 0; i < pButtons.length ; i++){
                 pButtons[i].disabled = false
+                pButtons[i].style.opacity = "1"
             }
         }
     } , "6000")
@@ -169,6 +172,7 @@ function battleDamage(){
         textBox.innerHTML = `${player1_pokemonName} has won!`
         for(let i = 0; i < pButtons.length ; i++){
             pButtons[i].disabled = true
+            pButtons[i].style.opacity = "0.5"
         }
         battleEnd = true
     }
