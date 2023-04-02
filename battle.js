@@ -23,6 +23,7 @@ bossSprite = document.querySelector("#BossSprite"),
 pokeHealthBar = document.querySelector("#playerHealthBar"),
 bossHealthBar = document.querySelector("#BossHealthBar")
 
+
 async function addPossibleMove(pokeName , element){
     const moveResponse = await fetch(element.move.url);
     const moveData = await moveResponse.json();
@@ -59,7 +60,8 @@ function battleDamage(){
     let battlePoints = player1_currentMove.power
     if(boss_percentHealth - battlePoints >= 0){
         textBox.innerHTML += `${player1_pokemonName} used ${player1_currentMove.name}!<br>` 
-        boss_percentHealth -= battlePoints*3
+        boss_percentHealth -= battlePoints*3;
+        // gsap.to(bossSprite.)
     }else{
         boss_percentHealth = 0
         textBox.innerHTML = `${player1_pokemonName} has won!`
@@ -80,7 +82,7 @@ function battle(){
     playerSprite.src = player1_currentPokemon.backSprite
     player1_currentPokemon.setMoves()
      
-    //console.log(player1_currentPokemon)
+    console.log(player1_currentPokemon)
 
     const runAway = document.createElement("div")
     const attack = document.createElement("div")
@@ -97,13 +99,13 @@ function battle(){
         let moveType = Object.values(element)[0].type
         let moveColor = playerColors[moveType]
 
-        const pokeAttack = document.createElement("div")
-        pokeAttack.setAttribute("id" , "pAttack")
+        const pokeAttack = document.createElement("div");
+        pokeAttack.setAttribute("id" , "pAttack");
 
         pokeAttack.style.backgroundColor = `rgb(${moveColor[0]} , ${moveColor[1]} , ${moveColor[2]})`
         pokeAttack.innerText = `${Object.keys(element)[0][0].toUpperCase()}${Object.keys(element)[0].slice(1)}` 
 
-        pokeAttack.style.borderWidth = "20px"
+        pokeAttack.style.borderWidth = "20px";
         movesArray.append(pokeAttack)
 
         
@@ -157,7 +159,6 @@ window.addEventListener('DOMContentLoaded', ()=>{
             const data = await response.json();
             weatherIcon.src = data.current.condition.icon
             console.log(data);
-            
         }
         catch(error){
             console.log(error)
