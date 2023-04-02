@@ -61,7 +61,13 @@ function battleDamage(){
     if(boss_percentHealth - battlePoints >= 0){
         textBox.innerHTML += `${player1_pokemonName} used ${player1_currentMove.name}!<br>` 
         boss_percentHealth -= battlePoints*3;
-        // gsap.to(bossSprite.)
+        gsap.to(bossSprite,{
+            opacity:0,
+            repeat:5,
+            yoyo:true,
+            duration:0.08,
+            fill:'blue'
+        });
     }else{
         boss_percentHealth = 0
         textBox.innerHTML = `${player1_pokemonName} has won!`
