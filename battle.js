@@ -67,6 +67,32 @@ function battleDamage(){
         bossBattlePoints = bossAttack.power
         if(player1_currentPokemon_maxHealth - bossBattlePoints >= 0 && battleEnd == false){
             textBox.innerHTML = `Mewtwo used ${bossAttack.name}!<br>` 
+            const tl2 = gsap.timeline()
+            tl2.to(bossSprite, {
+                x:-20
+            })
+                .to(bossSprite,{
+                    x:20,
+                    duration:0.1,
+                    onComplete(){
+                        gsap.to(bossSprite,{
+                            x:30,
+                            yoyo:true,
+                            repeat:5,
+                            duration:0.08
+                        })
+
+                        gsap.to(playerSprite,{
+                            opacity:0,
+                            repeat:5,
+                            yoyo:true,
+                            duration:0.08,
+                        })
+                    }
+                })
+                .to(bossSprite,{
+                    x:0
+                })
             player1_currentPokemon_percentHealth -= bossBattlePoints * 3
             
         }else{
