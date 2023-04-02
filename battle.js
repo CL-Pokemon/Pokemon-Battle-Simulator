@@ -87,14 +87,7 @@ function battleDamage(){
             .to(playerSprite,{
                 x:0
             })
-        // gsap.to(playerSprite,{
-        //     opacity:0,
-        //     repeat:5,
-        //     yoyo:true,
-        //     duration:0.08,
-        //     fill:'blue'
-        // });
-        
+            
     }else{
         boss_percentHealth = 0
         textBox.innerHTML = `${player1_pokemonName} has won!`
