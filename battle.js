@@ -63,14 +63,14 @@ function battleDamage(){
         boss_percentHealth -= battlePoints*3;
         const tl = gsap.timeline()
         tl.to(playerSprite, {
-            x:-5
+            x:-20
         })
             .to(playerSprite,{
-                x:35,
+                x:20,
                 duration:0.1,
                 onComplete(){
                     gsap.to(playerSprite,{
-                        x:45,
+                        x:30,
                         yoyo:true,
                         repeat:5,
                         duration:0.08
@@ -85,7 +85,7 @@ function battleDamage(){
                 }
             })
             .to(playerSprite,{
-                x:15
+                x:0
             })
         // gsap.to(playerSprite,{
         //     opacity:0,
