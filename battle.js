@@ -58,7 +58,7 @@ async function listPokemonParty(pokeName){
 function battleDamage(){
     textBox.innerHTML = ""
     let pButtons = document.querySelectorAll("#pAttack")
-    for(let i = 0; i < pButtons.length ; i++){
+    for(let i = 0; i < pButtons.length ; i++){    
         pButtons[i].disabled = true
     }
     setTimeout(() =>{
@@ -66,7 +66,7 @@ function battleDamage(){
         bossAttack = bossMoves[index],
         bossBattlePoints = bossAttack.power
         if(player1_currentPokemon_maxHealth - bossBattlePoints >= 0 && battleEnd == false){
-            textBox.innerHTML = `Mewtwo used ${bossAttack.name}!<br>`
+            textBox.innerHTML = `Mewtwo used ${bossAttack.name}!<br>` 
             player1_currentPokemon_percentHealth -= bossBattlePoints * 3
             
         }else{
