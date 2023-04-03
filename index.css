@@ -168,11 +168,6 @@ body{
         width:408.281px !important;
         height:291.594px !important;
     }
-    img#pokeBall-logo{
-        resize: none;
-        /* width: 109.16px; */
-        /* height: 85.16px; */
-    }
     div#pokeStats-top{
         resize: none;
         width:646.047px;
