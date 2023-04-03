@@ -89,6 +89,9 @@ body{
     #footer{
         margin:0;
     }
+    img#firstQueue{
+        height: 7vw !important;
+    }
     /* #aside, #pokeStats-bot,.row,button#addToParty,button#deleteFromParty,button#fightingScene,div#footer,div#rowQueue.row.p-2,img#firstQueue.col-sm-3{
         resize: none;
         width: 829.792px;
