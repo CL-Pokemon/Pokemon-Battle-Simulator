@@ -83,100 +83,133 @@ body{
     background-color:rgba(38, 70, 83,0.45);
 }
 @media screen and (min-width:1920px) {
-    img#pokeSprite{
+    /* img#pokeSprite{
         height: 14vw !important;
-    }
+    } */
     #footer{
+        resize: none;
         margin:0;
+        width: 646.047px;
+        height: 163px;
     }
-    img#firstQueue{
+    h3#queueList{
+        resize: none;
+        width: 646.05px;
+        height: 33.59px;
+    }
+    div#rowQueue.row.p-2{
+        resize: none;
+        width: 670.05px;
+        height: 121.41px;
+    }
+    img#firstQueue.col-sm-3{
+        resize: none;
+        width: 163.5px;
+        height: 105.41px;
+    }
+    h3#idNum{
+        resize: none;
+        width: 139.500px;
+        height: 33.594px;
+    }
+    /* img#firstQueue{
         height: 7vw !important;
-    }
+    } */
     /* #aside, #pokeStats-bot,.row,button#addToParty,button#deleteFromParty,button#fightingScene,div#footer,div#rowQueue.row.p-2,img#firstQueue.col-sm-3{
         resize: none;
         width: 829.792px;
         height: 842.438px;
-    }
+    } */
     #pokeBall-logo, #logo-sprite{
         resize: none;
         width: 115.625px;
         height: 115.625px;
     }
-    #pokeName{
+    div#pokeName.col-sm-5{
         resize: none;
-        width:325.062px;
+        width:250.52px;
         height:41.583px;
     }
-    #idPoke{
+    div#idPoke.col-sm-3{
         resize: none;
-        width:185.438px;
+        width:163.5px;
         height: 41.583px;
     }
-    #pokemon-topbar{
+    div#pokemon-topbar{
         resize: none;
         width: 813.792px;
         height:115.625px;
     }
+    #container{
+        resize: none;
+        width: 646.047px;
+        height: 749.75px;
+    }
     #section{
         resize: none;
-        width:829.792px;
+        width:646.047px;
         height:131.625px;
     }
-    #leftSide{
+    div#leftSide.row.align-items-center{
         resize: none;
-        width:837.792px;
+        width:646.047px;
         height:115.625px;
     }
     div.row.align-items-center{
         resize: none;
-        width:853.792px;
-        height:384px;
+        width:648.891px;
+        height:291.797px;
     }
     img#pokeSprite{
         resize: none;
-        width:545.188px;
-        height:384px;
+        width:408.281px !important;
+        height:291.594px !important;
+    }
+    img#pokeBall-logo{
+        resize: none;
+        /* width: 109.16px; */
+        /* height: 85.16px; */
     }
     div#pokeStats-top{
         resize: none;
-        width:829.792px;
+        width:646.047px;
         height:124.750px;
     }
     div.row.align-items-center.text-center{
         resize: none;
-        width:853.792px;
+        width:670.938px;
         height: 41.583px;
     }
     div#heightStat, div#weightStat, div#typeState, div#hpStat, div#attackStat, div#defenseStat{
         resize: none;
-        width:331.729px;
+        width:256.484px;
         height:41.583px;
     }
     div#resultHeight, div#resultWeight, div#resultType, div#resultHp, div#resultAttack, div#resultDefense{
         resize: none;
-        width:474.042px;
+        width:390.86px;
         height: 41.583px;
     }
     div#pokeStats-bot{
         resize: none;
-        width: 829.792px;
+        width: 646.047px;
         height:124.750px;
     }
-    .row{
+    div.row{
         resize: none;
-        width: 853.792px;
+        width: 646.047px;
         height:38.667px;
     }
     button#addToParty, button#deleteFromParty{
         resize: none;
-        width: 257.916px;
-        height:24px;
+        width: 223.34px;
+        height:38px;
     }
     button#fightingScene{
         resize: none;
-        width: 400.229px;
-        height:24px;
-    } */
+        width: 335.02px;
+        height:38px;
+    }
 }
 @media screen and (max-width:1920px) {
     /* #container{
