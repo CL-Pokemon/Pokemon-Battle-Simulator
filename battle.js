@@ -66,7 +66,7 @@ function battleDamage(){
         pButtons[i].disabled = true
         pButtons[i].style.opacity = "0.5"
     }
-    if(weatherTemp >= 75){
+    if(weatherTemp >= 35){
         if(player1_currentMove.type == "fire"){
             multiplier = 3.5
         }else if(player1_currentMove.type == "ice"){
