@@ -24,7 +24,10 @@ const playerSprite = document.querySelector("#pokemonSprite"),
 bossSprite = document.querySelector("#BossSprite"),
 pokeHealthBar = document.querySelector("#playerHealthBar"),
 bossHealthBar = document.querySelector("#BossHealthBar"), 
-bossMoves = [{name : "psychic" , power : 90 , type : "psychic"} , {name : "future sight" , power : 120 , type : "psychic"} , {name : "ancient power" , power : 60 , type : "rock"} , {name : "aura sphere" , power : 80 , type : "fighting"}]
+bossMoves = [{name : "psychic" , power : 90 , type : "psychic"} , {name : "future sight" , power : 120 , type : "psychic"} , {name : "ancient power" , power : 60 , type : "rock"} , {name : "aura sphere" , power : 80 , type : "fighting"}] , 
+config = {
+    MY_API_TOKEN: 'f6016fa85da141e9b5e15733232203',
+}
 
 
 async function addPossibleMove(pokeName , element){
