@@ -86,6 +86,9 @@ body{
     /* img#pokeSprite{
         height: 14vw !important;
     } */
+    div#list-cards.col-6.col-sm-5{
+        margin-left: auto;
+    }
     #footer{
         resize: none;
         margin:0;
